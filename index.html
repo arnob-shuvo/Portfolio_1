@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Shuvo Datta — Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Sora:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --cyan:        #22d3ee;
+      --cyan-dim:    rgba(34, 211, 238, 0.10);
+      --cyan-border: rgba(34, 211, 238, 0.22);
+      --purple:      #818cf8;
+      --bg:          #060a12;
+      --card:        rgba(255,255,255,0.028);
+      --card-border: rgba(255,255,255,0.07);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background-color: var(--bg);
+      font-family: 'Sora', sans-serif;
+      color: #e2e8f0;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed; inset: 0;
+      background-image:
+        linear-gradient(rgba(34,211,238,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(34,211,238,0.025) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none; z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      top: -220px; left: 50%; transform: translateX(-50%);
+      width: 800px; height: 560px;
+      background: radial-gradient(ellipse, rgba(34,211,238,0.065) 0%, transparent 68%);
+      pointer-events: none; z-index: 0;
+    }
+
+    .wrap { position: relative; z-index: 1; }
+    .display { font-family: 'DM Serif Display', serif; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: 1rem;
+    }
+
+    .divider {
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--cyan-border), transparent);
+    }
+
+    .label {
+      font-size: 0.62rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      font-weight: 600;
+      opacity: 0.8;
+    }
+
+    .grad-name {
+      background: linear-gradient(100deg, var(--cyan) 0%, var(--purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .cursor { animation: blink 1.2s step-end infinite; -webkit-text-fill-color: var(--cyan); }
+
+    @keyframes dotPulse {
+      0%,100% { box-shadow: 0 0 0 0 rgba(34,211,238,0.5); }
+      50%      { box-shadow: 0 0 0 6px rgba(34,211,238,0); }
+    }
+    .dot {
+      width:8px; height:8px; border-radius:50%;
+      background: var(--cyan);
+      animation: dotPulse 2s ease-in-out infinite;
+      flex-shrink:0;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .avatar-ring {
+      position:absolute; inset:-3px; border-radius:9999px;
+      background: conic-gradient(var(--cyan), var(--purple), transparent, var(--cyan));
+      animation: spin 6s linear infinite;
+      z-index:0;
+    }
+    .avatar-inner {
+      position:relative; z-index:1;
+      width:80px; height:80px; border-radius:9999px;
+      background: linear-gradient(135deg, #0e1726, #162032);
+      border: 2px solid rgba(6,10,18,1);
+      display:flex; align-items:center; justify-content:center;
+      font-family:'DM Serif Display',serif;
+      font-size:1.6rem; color: var(--cyan);
+    }
+
+    @keyframes fadeUp {
+      from { opacity:0; transform:translateY(22px); }
+      to   { opacity:1; transform:translateY(0); }
+    }
+    .fu { animation: fadeUp 0.75s ease forwards; opacity:0; }
+    .d1 { animation-delay:0.08s; }
+    .d2 { animation-delay:0.22s; }
+    .d3 { animation-delay:0.36s; }
+    .d4 { animation-delay:0.50s; }
+    .d5 { animation-delay:0.64s; }
+    .d6 { animation-delay:0.78s; }
+    .d7 { animation-delay:0.90s; }
+
+    .int-card {
+      background: var(--cyan-dim);
+      border: 1px solid var(--cyan-border);
+      border-radius: 0.75rem;
+      padding: 0.9rem 1.1rem;
+      display:flex; align-items:center; gap:0.75rem;
+      transition: all 0.25s ease;
+    }
+    .int-card:hover {
+      background: rgba(34,211,238,0.16);
+      border-color: rgba(34,211,238,0.45);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(34,211,238,0.07);
+    }
+    .int-icon {
+      width:36px; height:36px; border-radius:0.5rem;
+      background: rgba(34,211,238,0.12);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    }
+
+    .skill-pill {
+      display:inline-flex; align-items:center; gap:0.4rem;
+      padding: 0.35rem 0.85rem;
+      border-radius:9999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      font-size: 0.78rem; color: #94a3b8;
+      transition: all 0.2s ease;
+      cursor:default;
+    }
+    .skill-pill:hover {
+      background: var(--cyan-dim);
+      border-color: var(--cyan-border);
+      color: var(--cyan);
+      transform:translateY(-1px);
+    }
+    .skill-dot {
+      width:5px; height:5px; border-radius:50%;
+      background:var(--cyan); opacity:0.6; flex-shrink:0;
+    }
+
+    .soc-link {
+      display:flex; align-items:center; gap:0.75rem;
+      padding: 0.8rem 1.1rem;
+      border-radius:0.75rem;
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      color: #94a3b8;
+      text-decoration:none;
+      font-size: 0.83rem;
+      transition: all 0.22s ease;
+    }
+    .soc-link:hover {
+      color: var(--cyan);
+      border-color: var(--cyan-border);
+      background: var(--cyan-dim);
+      transform: translateX(4px);
+    }
+    .soc-icon {
+      width:34px; height:34px; border-radius:0.5rem;
+      background: rgba(255,255,255,0.05);
+      display:flex; align-items:center; justify-content:center; flex-shrink:0;
+      transition: background 0.22s ease;
+    }
+    .soc-link:hover .soc-icon { background: var(--cyan-dim); }
+    .arr { margin-left:auto; flex-shrink:0; opacity:0.35; transition:opacity 0.2s, transform 0.2s; }
+    .soc-link:hover .arr { opacity:1; transform:translateX(3px); }
+
+    .edu-card {
+      background: var(--cyan-dim);
+      border: 1px solid var(--cyan-border);
+      border-radius: 0.75rem;
+      padding: 1.1rem 1.25rem;
+    }
+
+    ::-webkit-scrollbar { width:6px; }
+    ::-webkit-scrollbar-track { background:var(--bg); }
+    ::-webkit-scrollbar-thumb { background:rgba(34,211,238,0.18); border-radius:3px; }
+  </style>
+</head>
+
+<body>
+<div class="wrap">
+<div class="max-w-2xl mx-auto px-5 py-16">
+
+  <!-- ── HERO ─────────────────────────────────────────────── -->
+  <div class="card px-8 py-10 mb-5 fu d1">
+    <div class="flex items-center justify-between mb-8">
+      <span class="label">Portfolio · 2025</span>
+      <div class="flex items-center gap-2">
+        <div class="dot"></div>
+        <span style="font-size:0.65rem;color:#475569;letter-spacing:0.12em;">OPEN TO OPPORTUNITIES</span>
+      </div>
+    </div>
+
+    <div class="flex flex-col sm:flex-row items-center sm:items-start gap-7 mb-7">
+      <div class="relative flex-shrink-0" style="width:86px;height:86px;">
+        <div class="avatar-ring"></div>
+        <div class="avatar-inner">SD</div>
+      </div>
+      <div>
+        <p style="font-size:0.7rem;color:#475569;letter-spacing:0.18em;margin-bottom:0.35rem;">HEY THERE, I'M</p>
+        <h1 class="display grad-name" style="font-size:clamp(2.2rem,7vw,3.2rem);line-height:1.1;">
+          Shuvo Datta<span class="cursor">_</span>
+        </h1>
+        <div class="flex flex-wrap items-center gap-2 mt-2">
+          <span style="font-size:0.78rem;color:#64748b;">CSE Student</span>
+          <span style="color:#1e3a4a;">·</span>
+          <span style="font-size:0.78rem;color:#64748b;">Aspiring AI Engineer</span>
+        </div>
+        <div class="flex items-center gap-2 mt-3">
+          <div style="width:20px;height:1px;background:var(--cyan);opacity:0.6;"></div>
+          <p class="display" style="font-style:italic;font-size:0.88rem;color:#64748b;">
+            "Turning ideas into reality"
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── ABOUT ─────────────────────────────────────────────── -->
+  <div class="card px-8 py-8 mb-5 fu d2">
+    <span class="label block mb-4">About Me</span>
+    <div class="divider mb-5"></div>
+    <p style="color:#94a3b8;font-size:0.875rem;line-height:1.9;">
+      I'm <span style="color:var(--cyan);font-weight:500;">Shuvo Datta</span> — a Computer Science student at
+      <span style="color:var(--cyan);font-weight:500;">BRAC University</span>, Bangladesh, with a clear obsession:
+      <span style="color:var(--cyan);font-weight:500;">Artificial Intelligence</span>.
+      I spend my time understanding how machines learn, writing code that actually does something, and working
+      toward the kind of engineer I want to become.
+      <br/><br/>
+      For me, it's not just about grades or degrees — it's about
+      <span style="color:var(--cyan);font-weight:500;">building real things</span> that solve real problems.
+      I believe that discipline, consistency, and a hunger to improve every single day are what separate
+      those who dream from those who <span style="color:var(--cyan);font-weight:500;">execute</span>.
+      <br/><br/>
+      I'm still early in the journey — but I'm moving with intention.
+    </p>
+  </div>
+
+  <!-- ── FOCUS AREAS ───────────────────────────────────────── -->
+  <div class="card px-8 py-8 mb-5 fu d3">
+    <span class="label block mb-4">Focus Areas</span>
+    <div class="divider mb-5"></div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+
+      <div class="int-card">
+        <div class="int-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/>
+            <circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.83rem;font-weight:500;">Artificial Intelligence</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:2px;">ML, deep learning & neural nets</p>
+        </div>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.83rem;font-weight:500;">Software Development</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:2px;">Building clean, useful software</p>
+        </div>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.83rem;font-weight:500;">Self Growth & Discipline</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:2px;">Consistency over motivation</p>
+        </div>
+      </div>
+
+      <div class="int-card">
+        <div class="int-icon">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="var(--cyan)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.83rem;font-weight:500;">Problem Solving</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:2px;">Logic, algorithms & clarity</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ── SKILLS ────────────────────────────────────────────── -->
+  <div class="card px-8 py-8 mb-5 fu d4">
+    <span class="label block mb-4">Skills & Tech Stack</span>
+    <div class="divider mb-5"></div>
+
+    <p style="font-size:0.68rem;color:#475569;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;">Languages</p>
+    <div class="flex flex-wrap gap-2 mb-5">
+      <span class="skill-pill"><span class="skill-dot"></span>Python</span>
+      <span class="skill-pill"><span class="skill-dot"></span>C / C++</span>
+      <span class="skill-pill"><span class="skill-dot"></span>Java</span>
+      <span class="skill-pill"><span class="skill-dot"></span>JavaScript</span>
+    </div>
+
+    <p style="font-size:0.68rem;color:#475569;letter-spacing:0.15em;text-transform:uppercase;margin-bottom:0.75rem;">Frameworks & Tools</p>
+    <div class="flex flex-wrap gap-2">
+      <span class="skill-pill"><span class="skill-dot"></span>TensorFlow</span>
+      <span class="skill-pill"><span class="skill-dot"></span>PyTorch</span>
+      <span class="skill-pill"><span class="skill-dot"></span>React</span>
+      <span class="skill-pill"><span class="skill-dot"></span>Git & GitHub</span>
+      <span class="skill-pill"><span class="skill-dot"></span>Linux</span>
+    </div>
+  </div>
+
+  <!-- ── EDUCATION ─────────────────────────────────────────── -->
+  <div class="card px-8 py-8 mb-5 fu d5">
+    <span class="label block mb-4">Education</span>
+    <div class="divider mb-5"></div>
+
+    <div class="edu-card">
+      <div class="flex items-start justify-between gap-4 flex-wrap">
+        <div>
+          <p style="color:#e2e8f0;font-size:0.95rem;font-weight:600;font-family:'DM Serif Display',serif;">
+            BRAC University
+          </p>
+          <p style="color:#64748b;font-size:0.78rem;margin-top:3px;">
+            B.Sc. in Computer Science & Engineering
+          </p>
+          <div class="flex items-center gap-2 mt-3">
+            <div class="dot" style="animation:none;"></div>
+            <span style="font-size:0.72rem;color:var(--cyan);">Currently Enrolled · Dhaka, Bangladesh</span>
+          </div>
+        </div>
+        <div style="text-align:right;flex-shrink:0;">
+          <p style="font-size:0.7rem;color:#334155;letter-spacing:0.1em;">BRACU</p>
+          <p style="font-size:0.7rem;color:#334155;margin-top:2px;">bracu.ac.bd</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CONTACT & SOCIALS ─────────────────────────────────── -->
+  <div class="card px-8 py-8 mb-10 fu d6">
+    <span class="label block mb-4">Find Me Online</span>
+    <div class="divider mb-5"></div>
+
+    <div class="flex flex-col gap-2.5">
+
+      <!-- Email -->
+      <a href="mailto:shuvo.datta@g.bracu.ac.bd" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">Email</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">shuvo.datta@g.bracu.ac.bd</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/arnob-shuvo" target="_blank" rel="noopener" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">GitHub</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">github.com/arnob-shuvo</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/shuvodatta/" target="_blank" rel="noopener" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+            <rect x="2" y="9" width="4" height="12"/>
+            <circle cx="4" cy="4" r="2"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">LinkedIn</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">linkedin.com/in/shuvodatta</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Twitter/X -->
+      <a href="https://twitter.com/arnob_shuvo" target="_blank" rel="noopener" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">Twitter / X</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">@arnob_shuvo</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Facebook -->
+      <a href="https://facebook.com/arnobshuvo" target="_blank" rel="noopener" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">Facebook</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">facebook.com/arnobshuvo</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+      <!-- Instagram -->
+      <a href="https://instagram.com/shuvo_dutta_" target="_blank" rel="noopener" class="soc-link">
+        <div class="soc-icon">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
+            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+          </svg>
+        </div>
+        <div>
+          <p style="color:#e2e8f0;font-size:0.8rem;font-weight:500;">Instagram</p>
+          <p style="color:#475569;font-size:0.72rem;margin-top:1px;">@shuvo_dutta_</p>
+        </div>
+        <svg class="arr" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── FOOTER ────────────────────────────────────────────── -->
+  <div class="text-center fu d7">
+    <p style="font-size:0.65rem;color:#1e2d3d;letter-spacing:0.16em;">
+      SHUVO DATTA · BRAC UNIVERSITY · 2025
+    </p>
+  </div>
+
+</div>
+</div>
+</body>
+</html>
