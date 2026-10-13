@@ -322,6 +322,62 @@
     .stack-strip { background: rgba(12,18,36,0.6) !important; }
     section.alt { background: linear-gradient(180deg, rgba(12,18,36,0.9), rgba(12,18,36,0.6)) !important; }
 
+    /* Scroll progress */
+    .progress { position: fixed; top: 0; left: 0; height: 3px; width: 100%; z-index: 60; background: var(--grad); transform-origin: 0 50%; transform: scaleX(0); }
+
+    /* Neural network canvas behind the hero */
+    #net { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; opacity: .9;
+      mask-image: linear-gradient(180deg, #000 70%, transparent); -webkit-mask-image: linear-gradient(180deg, #000 70%, transparent); }
+
+    /* Hero entrance */
+    .js .hero .enter { opacity: 0; transform: translateY(18px); animation: enter .8s cubic-bezier(.2,.7,.2,1) forwards; }
+    .js .hero .e1 { animation-delay: .05s } .js .hero .e2 { animation-delay: .15s } .js .hero .e3 { animation-delay: .28s }
+    .js .hero .e4 { animation-delay: .4s }  .js .hero .e5 { animation-delay: .52s } .js .hero .e6 { animation-delay: .64s }
+    @keyframes enter { to { opacity: 1; transform: none; } }
+
+    /* Animated gradient on the name */
+    .hero h1 {
+      background: linear-gradient(100deg, #FFFFFF 0%, #FFFFFF 35%, #B9B2FF 50%, #7DD3FC 60%, #FFFFFF 75%, #FFFFFF 100%) !important;
+      background-size: 250% 100% !important;
+      -webkit-background-clip: text !important; background-clip: text !important; color: transparent;
+      animation: shimmer 7s ease-in-out infinite;
+    }
+    .js .hero h1.enter { animation: enter .8s cubic-bezier(.2,.7,.2,1) .15s forwards, shimmer 7s ease-in-out 1.2s infinite; }
+    @keyframes shimmer { 0% { background-position: 100% 0; } 50%, 100% { background-position: 0% 0; } }
+
+    /* 3D tilt on the photo */
+    .tilt { transform-style: preserve-3d; transition: transform .2s ease-out; will-change: transform; }
+    @media (hover: hover) and (min-width: 901px) { .tilt .float { transform: translateZ(40px); } }
+    .tilt img { transform: translateZ(0); }
+
+    /* Infinite logo marquee */
+    .stack-strip .container { flex-wrap: nowrap !important; }
+    .marquee { flex: 1; min-width: 0; overflow: hidden; mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent); }
+    .marquee ul { flex-wrap: nowrap !important; width: max-content; gap: 2.6rem !important; animation: marquee 32s linear infinite; padding-right: 2.6rem; }
+    .marquee:hover ul { animation-play-state: paused; }
+    .marquee li { white-space: nowrap; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* Mouse spotlight on cards */
+    .spot { position: relative; overflow: hidden; }
+    .spot::before {
+      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0;
+      background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgba(124,140,255,0.16), transparent 60%);
+      opacity: 0; transition: opacity .3s ease;
+    }
+    .spot:hover::before { opacity: 1; }
+    .spot > * { position: relative; z-index: 1; }
+
+    /* Typing cursor line in project windows */
+    .window pre .cur { display: inline-block; width: 8px; height: 1.1em; background: var(--cyan); vertical-align: -0.2em; animation: blink 1s step-end infinite; }
+
+    /* Big glowing CTA band */
+    .cta-band { position: relative; overflow: hidden; border-radius: 28px; padding: clamp(2.2rem, 5vw, 3.6rem); margin-top: clamp(3rem,6vw,4.5rem);
+      background: radial-gradient(600px 300px at 15% 0%, rgba(139,124,255,0.45), transparent 60%), radial-gradient(500px 300px at 90% 100%, rgba(56,189,248,0.35), transparent 60%), #10173A;
+      border: 1px solid rgba(255,255,255,0.08); display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+    .cta-band h3 { font-size: clamp(1.5rem, 3vw, 2.1rem); font-weight: 800; letter-spacing: -0.02em; line-height: 1.15; max-width: 22ch; }
+    .cta-band p { color: var(--muted); margin-top: 0.4rem; }
+
     /* Reveal on scroll (only when JS is on) */
     .js .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
     .js .reveal.in { opacity: 1; transform: none; }
@@ -367,13 +423,14 @@
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .js .reveal { opacity: 1; transform: none; }
+      .js .reveal, .js .hero .enter { opacity: 1; transform: none; }
     }
   </style>
 </head>
 
 <body>
 
+<div class="progress" id="progress" aria-hidden="true"></div>
 <header class="nav" id="nav">
   <div class="container">
     <a href="#top" class="logo" aria-label="Shuvo Datta, back to top"><span class="mark" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/><path d="M22 10v5"/></svg></span>Shuvo Datta</a>
@@ -395,17 +452,18 @@
 <main id="top">
   <!-- Hero -->
   <div class="hero">
+    <canvas id="net" aria-hidden="true"></canvas>
     <div class="container">
       <div>
-        <p class="available"><i></i>Open to internships and collaborations</p>
-        <h1>Shuvo Datta</h1>
-        <p class="typed" aria-label="Aspiring AI Engineer, Python Developer, Problem Solver"><span id="typed" aria-hidden="true">Aspiring AI Engineer</span><span class="caret" aria-hidden="true"></span></p>
-        <p class="lead">Computer Science student at BRAC University, focused on machine learning and building software that solves real problems.</p>
-        <div class="cta">
+        <p class="available enter e1"><i></i>Open to internships and collaborations</p>
+        <h1 class="enter e2">Shuvo Datta</h1>
+        <p class="typed enter e3" aria-label="Aspiring AI Engineer, Python Developer, Problem Solver"><span id="typed" aria-hidden="true">Aspiring AI Engineer</span><span class="caret" aria-hidden="true"></span></p>
+        <p class="lead enter e4">Computer Science student at BRAC University, focused on machine learning and building software that solves real problems.</p>
+        <div class="cta enter e5">
           <a href="#projects" class="btn btn-primary">View my work</a>
           <a href="#contact" class="btn btn-outline">Get in touch</a>
         </div>
-        <div class="hero-social">
+        <div class="hero-social enter e6">
           <span>Find me on</span>
           <ul>
             <li><a class="icon-btn" href="https://github.com/arnob-shuvo" target="_blank" rel="noopener" aria-label="GitHub"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg></a></li>
@@ -415,7 +473,7 @@
         </div>
       </div>
 
-      <div class="photo-wrap">
+      <div class="photo-wrap tilt enter e3" id="tilt">
         <div class="photo-ring" aria-hidden="true"></div>
         <img src="shuvo.jpg" alt="Shuvo Datta in a dark suit and red tie, wearing a BRAC University lanyard" width="900" height="1000" />
         <div class="float float-1">
@@ -434,7 +492,7 @@
   <div class="stack-strip">
     <div class="container">
       <p>Technologies I work with</p>
-      <ul>
+      <div class="marquee"><ul>
         <li><img src="icons/python.svg" alt="" width="26" height="26">Python</li>
         <li><img src="icons/pytorch.svg" alt="" width="26" height="26">PyTorch</li>
         <li><img src="icons/tensorflow.svg" alt="" width="26" height="26">TensorFlow</li>
@@ -442,7 +500,23 @@
         <li><img src="icons/typescript.svg" alt="" width="26" height="26">TypeScript</li>
         <li><img src="icons/flask.svg" class="invert" alt="" width="26" height="26">Flask</li>
         <li><img src="icons/git.svg" alt="" width="26" height="26">Git</li>
-      </ul>
+              <li><img src="icons/java.svg" alt="" width="26" height="26">Java</li>
+        <li><img src="icons/cplusplus.svg" alt="" width="26" height="26">C++</li>
+        <li><img src="icons/javascript.svg" alt="" width="26" height="26">JavaScript</li>
+        <li><img src="icons/sqlite.svg" alt="" width="26" height="26">SQLite</li>
+
+        <li aria-hidden="true"><img src="icons/python.svg" alt="" width="26" height="26">Python</li>
+        <li aria-hidden="true"><img src="icons/pytorch.svg" alt="" width="26" height="26">PyTorch</li>
+        <li aria-hidden="true"><img src="icons/tensorflow.svg" alt="" width="26" height="26">TensorFlow</li>
+        <li aria-hidden="true"><img src="icons/react.svg" alt="" width="26" height="26">React</li>
+        <li aria-hidden="true"><img src="icons/typescript.svg" alt="" width="26" height="26">TypeScript</li>
+        <li aria-hidden="true"><img src="icons/flask.svg" class="invert" alt="" width="26" height="26">Flask</li>
+        <li aria-hidden="true"><img src="icons/git.svg" alt="" width="26" height="26">Git</li>
+              <li aria-hidden="true"><img src="icons/java.svg" alt="" width="26" height="26">Java</li>
+        <li aria-hidden="true"><img src="icons/cplusplus.svg" alt="" width="26" height="26">C++</li>
+        <li aria-hidden="true"><img src="icons/javascript.svg" alt="" width="26" height="26">JavaScript</li>
+        <li aria-hidden="true"><img src="icons/sqlite.svg" alt="" width="26" height="26">SQLite</li>
+      </ul></div>
     </div>
   </div>
 
@@ -459,7 +533,7 @@
           <p>For me it's not just about grades. It's about building real things that solve real problems. I believe discipline and consistency are what separate people who dream from people who execute.</p>
           <p>I'm early in my journey, and I'm looking for opportunities to learn from experienced engineers and contribute to real projects.</p>
         </div>
-        <dl class="facts">
+        <dl class="facts spot">
           <div><dt>Based in</dt><dd>Dhaka, Bangladesh</dd></div>
           <div><dt>University</dt><dd>BRAC University</dd></div>
           <div><dt>Degree</dt><dd>B.Sc. in CSE</dd></div>
@@ -468,17 +542,17 @@
         </dl>
       </div>
       <ul class="focus reveal">
-        <li>
+        <li class="spot">
           <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6.8 10.3 11M7 17.2l3.3-4.2M13.7 11 17 6.8M13.7 13l3.3 4.2"/></svg></span>
           <b>Artificial Intelligence</b>
           <span>Machine learning, deep learning and neural networks with PyTorch and TensorFlow.</span>
         </li>
-        <li>
+        <li class="spot">
           <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
           <b>Software Development</b>
           <span>Backend APIs with Python and Flask, and typed front-end code with TypeScript and React.</span>
         </li>
-        <li>
+        <li class="spot">
           <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>
           <b>Problem Solving</b>
           <span>Data structures, algorithms and breaking hard problems into clear steps.</span>
@@ -497,7 +571,7 @@
       </div>
 
       <article class="project reveal">
-        <div class="window" aria-hidden="true">
+        <div class="window spot" aria-hidden="true">
           <div class="window-bar"><i></i><i></i><i></i><span>app.py</span></div>
 <pre><span class="tk-k">@app</span>.<span class="tk-f">route</span>(<span class="tk-s">'/addGame'</span>, methods=[<span class="tk-s">'POST'</span>])
 <span class="tk-k">def</span> <span class="tk-f">add_game</span>():
@@ -507,7 +581,7 @@
     <span class="tk-k">if</span> existing_game:
         <span class="tk-k">return</span> jsonify(...), <span class="tk-n">400</span>
     ...
-    <span class="tk-k">return</span> jsonify({<span class="tk-s">"message"</span>: <span class="tk-s">"Game added!"</span>}), <span class="tk-n">201</span></pre>
+    <span class="tk-k">return</span> jsonify({<span class="tk-s">"message"</span>: <span class="tk-s">"Game added!"</span>}), <span class="tk-n">201</span> <span class="cur"></span></pre>
         </div>
         <div>
           <p class="p-label">Backend · REST API</p>
@@ -523,7 +597,7 @@
       </article>
 
       <article class="project flip reveal">
-        <div class="window" aria-hidden="true">
+        <div class="window spot" aria-hidden="true">
           <div class="window-bar"><i></i><i></i><i></i><span>solutions.ts</span></div>
 <pre><span class="tk-k">function</span> <span class="tk-f">getProperty</span>&lt;<span class="tk-p">T</span>, <span class="tk-p">K</span> <span class="tk-k">extends keyof</span> <span class="tk-p">T</span>&gt;(
   obj: <span class="tk-p">T</span>, key: <span class="tk-p">K</span>
@@ -554,8 +628,12 @@
         </div>
       </article>
 
-      <div class="all-repos reveal">
-        <a class="btn btn-primary" href="https://github.com/arnob-shuvo?tab=repositories" target="_blank" rel="noopener">See all projects on GitHub</a>
+      <div class="cta-band reveal">
+        <div>
+          <h3>More experiments live on my GitHub</h3>
+          <p>Coursework, practice problems and things I'm building next.</p>
+        </div>
+        <a class="btn btn-primary" href="https://github.com/arnob-shuvo?tab=repositories" target="_blank" rel="noopener">Explore my GitHub</a>
       </div>
     </div>
   </section>
@@ -568,7 +646,7 @@
         <h2>My toolkit</h2>
         <p>The languages, frameworks and tools I use to learn and build.</p>
       </div>
-      <div class="skills reveal">
+      <div class="skills spot reveal">
         <div class="skill-group sg-lang">
           <h3>Languages<small>What I write code in</small></h3>
           <ul class="tiles">
@@ -654,7 +732,7 @@
         </ul>
       </div>
 
-      <form class="form reveal" id="contactForm">
+      <form class="form spot reveal" id="contactForm">
         <div class="row">
           <label>Your name<input type="text" name="name" placeholder="Jane Doe" required autocomplete="name"></label>
           <label>Your email<input type="email" name="email" placeholder="jane@company.com" required autocomplete="email"></label>
@@ -739,6 +817,80 @@
     }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     items.forEach(el => io.observe(el));
   }
+
+  // Scroll progress bar
+  const bar = document.getElementById('progress');
+  const onProg = () => { const h = document.documentElement; bar.style.transform = `scaleX(${h.scrollTop / Math.max(1, h.scrollHeight - h.clientHeight)})`; };
+  window.addEventListener('scroll', onProg, { passive: true }); onProg();
+
+  // Mouse spotlight on cards
+  document.querySelectorAll('.spot').forEach(el => {
+    el.addEventListener('pointermove', e => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--mx', `${e.clientX - r.left}px`);
+      el.style.setProperty('--my', `${e.clientY - r.top}px`);
+    });
+  });
+
+  // 3D tilt on the photo (mouse only)
+  const tilt = document.getElementById('tilt');
+  tilt.addEventListener('animationend', e => { if (e.animationName === 'enter') tilt.classList.remove('enter', 'e3'); });
+  if (!reduceMotion && window.matchMedia('(hover: hover)').matches) {
+    tilt.addEventListener('pointermove', e => {
+      const r = tilt.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width - 0.5, y = (e.clientY - r.top) / r.height - 0.5;
+      tilt.style.transform = `perspective(900px) rotateY(${x * 10}deg) rotateX(${-y * 10}deg)`;
+    });
+    tilt.addEventListener('pointerleave', () => { tilt.style.transform = ''; });
+  }
+
+  // Neural network background: drifting nodes that link up near each other and the mouse
+  (() => {
+    const cv = document.getElementById('net'); const hero = cv.parentElement;
+    const ctx = cv.getContext('2d'); let w, h, dpr, nodes = [], mouse = { x: -9999, y: -9999 };
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = hero.clientWidth; h = hero.clientHeight;
+      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(90, (w * h) / 14000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 1.1, c: Math.random() < 0.5 ? '139,124,255' : '56,189,248'
+      }));
+    };
+    const LINK = 150;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+          if (d < LINK) { ctx.strokeStyle = `rgba(150,160,255,${0.3 * (1 - d / LINK)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+        }
+        const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (md < 180) { ctx.strokeStyle = `rgba(56,189,248,${0.45 * (1 - md / 180)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = `rgba(${a.c},0.85)`; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+      }
+    };
+    const step = () => {
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      draw(); if (running) requestAnimationFrame(step);
+    };
+    let running = false;
+    resize(); draw();
+    window.addEventListener('resize', () => { resize(); draw(); });
+    hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; if (!running) draw(); });
+    hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; if (!running) draw(); });
+    if (!reduceMotion) {
+      // only animate while the hero is on screen
+      new IntersectionObserver(([en]) => { const was = running; running = en.isIntersecting; if (running && !was) requestAnimationFrame(step); }).observe(hero);
+    }
+  })();
 
   // Contact form opens the visitor's email app
   document.getElementById('contactForm').addEventListener('submit', e => {
