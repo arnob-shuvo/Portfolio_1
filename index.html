@@ -16,7 +16,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237C6CFF'/%3E%3Cg fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M56 27 32 15 8 27l24 12 24-12z'/%3E%3Cpath d='M18 32v12c7 5 21 5 28 0V32'/%3E%3Cpath d='M56 27v12'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -52,7 +52,7 @@
         radial-gradient(700px 500px at -10% 30%, rgba(var(--a2),0.08), transparent 60%),
         var(--bg);
       color: var(--text);
-      font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
       font-size: 1.0625rem;
       line-height: 1.65;
       -webkit-font-smoothing: antialiased;
@@ -89,7 +89,7 @@
     .btn {
       display: inline-flex; align-items: center; justify-content: center; gap: 0.55rem;
       padding: 0.95rem 1.6rem; border-radius: 999px; border: 0; cursor: pointer;
-      font: 600 1rem/1 'Poppins', system-ui, sans-serif; text-decoration: none;
+      font: 600 1rem/1 'Plus Jakarta Sans', system-ui, sans-serif; text-decoration: none;
       transition: transform .2s ease, background .2s ease, border-color .2s ease, color .2s ease;
     }
     .btn-primary { background: var(--grad); background-size: 140% 100%; background-position: 0 0; color: #fff; box-shadow: 0 10px 30px -10px rgba(var(--am),0.75), inset 0 1px 0 rgba(255,255,255,0.18); }
@@ -116,7 +116,7 @@
       mask-image: radial-gradient(ellipse 70% 60% at 30% 40%, #000 20%, transparent 75%);
       -webkit-mask-image: radial-gradient(ellipse 70% 60% at 30% 40%, #000 20%, transparent 75%);
     }
-    .hero > .container:not(.tech-row) { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
+    .hero .container { display: grid; grid-template-columns: 1.15fr 0.85fr; gap: 3rem; align-items: center; }
     .available {
       display: inline-flex; align-items: center; gap: 0.55rem;
       padding: 0.4rem 0.9rem 0.4rem 0.75rem;
@@ -281,7 +281,7 @@
     .form input, .form textarea {
       width: 100%; padding: 0.85rem 1rem; border-radius: 12px;
       background: var(--bg-2); border: 1px solid var(--line); color: var(--text);
-      font: 400 1rem/1.5 'Poppins', system-ui, sans-serif;
+      font: 400 1rem/1.5 'Plus Jakarta Sans', system-ui, sans-serif;
       transition: border-color .2s;
     }
     .form input::placeholder, .form textarea::placeholder { color: #5D6787; }
@@ -391,7 +391,7 @@
       .nav-links { gap: 1.4rem; }
     }
     @media (max-width: 900px) {
-      .hero > .container:not(.tech-row) { grid-template-columns: 1fr; text-align: center; gap: 3.5rem; }
+      .hero .container { grid-template-columns: 1fr; text-align: center; gap: 3.5rem; }
       .hero .container > div:first-child { order: 2; }
       .lead { margin-inline: auto; }
       .cta, .hero-social { justify-content: center; }
@@ -430,99 +430,24 @@
       .js .reveal, .js .hero .enter { opacity: 1; transform: none; }
     }
 
-    /* ═══ Theme: slate + orange ═══ */
+    /* ═══ Colour scheme: slate + orange ═══ */
     :root {
-      --a1: 255,107,61; --a2: 255,160,70; --am: 255,130,60;
+      --a1: 255,107,61; --a2: 255,166,77; --am: 255,136,69;
       --violet-hi: #FF8A5C; --hl1: #FFB08F; --hl2: #FFC97A; --band: #252D3D;
       --bg: #1B2230; --bg-2: #1F2736; --surface: #242D3E; --surface-2: #2A3446; --line: #323C50;
-      --text: #F2F4F8; --muted: #AAB2C3; --dim: #808AA0; --green: #4ADE80;
-      --grad: linear-gradient(120deg, #FF6B3D, #FF8F4D);
+      --text: #F2F4F8; --muted: #AAB2C3; --dim: #808AA0;
     }
-    body { background: var(--bg) !important; }
-    .nav { background: rgba(27,34,48,0.85) !important; }
-    .btn { border-radius: 8px !important; }
-    .btn-primary { background: #FF6B3D !important; box-shadow: 0 10px 26px -10px rgba(255,107,61,.8) !important; }
-    .btn-primary:hover { background: #FF8452 !important; }
-    .btn-outline { background: transparent !important; border-color: #4A5570 !important; }
-    .btn-outline:hover { border-color: #FF6B3D !important; color: #FF8A5C; }
-    .logo .mark { background: #FF6B3D !important; box-shadow: none !important; border-radius: 9px; }
-    .hero::before, .hero::after { display: none !important; }
-    .hero { padding: clamp(3rem, 7vw, 5rem) 0 0 !important; overflow: hidden; }
-    .hero > .container:not(.tech-row) { grid-template-columns: 1fr 1fr !important; }
-    .hello { font-size: clamp(1.5rem, 2.6vw, 2rem); font-weight: 600; color: var(--text); }
-    .hello span { color: #FF6B3D; }
-    .im { display: flex; align-items: center; gap: 0.8rem; font-size: clamp(1.6rem, 3vw, 2.3rem); font-weight: 500; color: var(--text); margin-top: 0.3rem; }
-    .im .bar { width: 46px; height: 3px; background: #FF6B3D; border-radius: 2px; flex: none; }
-    .hero h1 {
-      font-size: clamp(2.6rem, 5.6vw, 4.4rem) !important; font-weight: 800 !important; line-height: 1.05 !important;
-      margin: 0.4rem 0 1.1rem !important; letter-spacing: -0.02em !important;
-      background: none !important; -webkit-text-fill-color: currentColor; color: var(--text) !important;
-    }
-    .js .hero h1.enter { animation: enter .8s cubic-bezier(.2,.7,.2,1) .25s forwards !important; }
-    .lead { max-width: 44ch; }
-    .hero-social { gap: 0.6rem !important; margin-top: 2rem !important; }
-    .icon-btn { background: transparent !important; }
-    .icon-btn:hover { border-color: #FF6B3D !important; color: #FF8A5C !important; }
-
-    .portrait { position: relative; justify-self: center; width: min(400px, 78vw); aspect-ratio: 1; }
-    .portrait img { position: relative; z-index: 2; width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 8px solid var(--bg); }
-    .portrait .ring { position: absolute; border-radius: 50%; pointer-events: none; }
-    .portrait .ring-1 { inset: -26px; background: conic-gradient(from 200deg, #FF6B3D 0deg, #FF6B3D 130deg, rgba(255,107,61,0.15) 220deg, rgba(255,107,61,0) 300deg, #FF6B3D 360deg); z-index: 1; animation: spin 18s linear infinite; }
-    .portrait .ring-1::after { content: ''; position: absolute; inset: 18px; border-radius: 50%; background: var(--bg); }
-    .portrait .ring-2 { inset: -70px; border: 1px solid rgba(255,107,61,0.25); z-index: 0; }
-    .portrait::after { content: ''; position: absolute; inset: -120px; border-radius: 50%; background: radial-gradient(circle, rgba(255,107,61,0.22), transparent 62%); z-index: 0; }
-    @keyframes spin { to { transform: rotate(360deg); } }
-
-    .hero .tech-row { list-style: none; display: flex !important; justify-content: space-between; flex-wrap: wrap; gap: 1rem 2rem; padding: 3rem 0 2.6rem; margin-top: clamp(3rem, 6vw, 4.5rem); border-top: 1px solid var(--line); }
-    .tech-row li { color: #5E687E; font-weight: 600; font-size: clamp(1rem, 1.6vw, 1.25rem); letter-spacing: 0.02em; transition: color .2s; }
-    .tech-row li:hover { color: #FF8A5C; }
-
-    section#about { background: var(--bg-2); border-block: 1px solid var(--line); }
-    .about2 { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: clamp(2.5rem, 6vw, 5rem); align-items: center; }
-    .services { list-style: none; position: relative; display: grid; gap: 2.2rem; padding-left: 0.2rem; }
-    .services::before { content: ''; position: absolute; left: 27px; top: 28px; bottom: 28px; width: 2px; background: linear-gradient(#FF6B3D, rgba(255,107,61,0.1)); }
-    .services li { display: flex; gap: 1.2rem; align-items: center; position: relative; }
-    .services .ico { width: 56px; height: 56px; border-radius: 50%; background: var(--surface); border: 2px solid #FF6B3D; color: #FF8A5C; display: grid; place-items: center; flex: none; }
-    .services b { display: block; font-size: 1.1rem; font-weight: 600; }
-    .services span { color: var(--muted); font-size: 0.95rem; }
-    .about-copy h2 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 700; margin-bottom: 1.2rem; }
-    .about-copy p { color: var(--muted); font-size: 1.05rem; }
-    .about-copy p + p { margin-top: 1rem; }
-    .stats { display: flex; gap: clamp(1.5rem, 4vw, 3rem); margin-top: 2.2rem; flex-wrap: wrap; }
-    .stats dt { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 700; line-height: 1; }
-    .stats dt span { color: #FF6B3D; }
-    .stats dd { color: var(--dim); font-size: 0.9rem; margin-top: 0.5rem; line-height: 1.4; }
-
-    .kicker { color: #FF8A5C !important; }
-    .kicker::before { background: #FF6B3D !important; }
-    .p-label { color: #FF8A5C !important; }
-    .tags span, .tags span:nth-child(even) { color: #FFB08F !important; background: rgba(255,107,61,0.12) !important; }
-    .timeline .dot:not(.soft) { background: #FF6B3D !important; }
-    .timeline::before { background: linear-gradient(#FF6B3D, var(--line)) !important; }
-    .timeline .when { color: #FF8A5C !important; }
-    section.alt { background: var(--bg-2) !important; }
-    .focus li::after, .window::after { display: none; }
-    .window-bar { background: #222A3A !important; }
+    body { background: radial-gradient(900px 600px at 85% -5%, rgba(255,107,61,0.12), transparent 60%), var(--bg) !important; }
+    .nav { background: rgba(27,34,48,0.82) !important; }
+    .available, .btn-outline { background-color: rgba(36,45,62,0.6) !important; }
+    .float { background: rgba(36,45,62,0.85) !important; }
     .window { background-color: #161C28 !important; }
-    .facts, .skills, .form { background-color: var(--surface) !important; backdrop-filter: none !important; }
-    .cta-band { background: linear-gradient(120deg, #FF6B3D, #FF8F4D) !important; border: 0 !important; }
-    .cta-band p { color: rgba(255,255,255,0.88) !important; }
-    .cta-band .btn-primary { background: #1B2230 !important; box-shadow: none !important; }
-    .cta-band .btn-primary:hover { background: #111722 !important; }
-    .progress { background: #FF6B3D !important; }
-    .contact-list .ico { background: rgba(255,107,61,0.12) !important; color: #FF8A5C !important; }
-    .form input:focus, .form textarea:focus { border-color: #FF6B3D !important; }
-    ::selection { background: #FF6B3D; }
-
-    @media (max-width: 900px) {
-      .hero > .container:not(.tech-row) { grid-template-columns: 1fr !important; text-align: left !important; }
-      .hero .container > div:first-child { order: 0 !important; }
-      .portrait { width: min(280px, 66vw); margin: 3.5rem auto 1rem; }
-      .cta, .hero-social { justify-content: flex-start !important; }
-      .im { justify-content: flex-start; }
-      .tech-row { justify-content: center; }
-      .about2 { grid-template-columns: 1fr; }
-    }
+    .window-bar { background: #222A3A !important; }
+    .facts, .focus li, .skills, .form { background-color: rgba(36,45,62,0.7) !important; }
+    .stack-strip { background: rgba(31,39,54,0.8) !important; }
+    section.alt { background: linear-gradient(180deg, rgba(31,39,54,0.95), rgba(31,39,54,0.7)) !important; }
+    .cta-band { background: radial-gradient(600px 300px at 15% 0%, rgba(255,107,61,0.5), transparent 60%), radial-gradient(500px 300px at 90% 100%, rgba(255,166,77,0.35), transparent 60%), #252D3D !important; }
+    .float-2 .ico { background: rgba(255,166,77,0.16) !important; color: #FFB86B !important; }
   </style>
 </head>
 
@@ -550,62 +475,112 @@
 <main id="top">
   <!-- Hero -->
   <div class="hero">
+    <canvas id="net" aria-hidden="true"></canvas>
     <div class="container">
-      <div class="hero-text">
-        <p class="hello enter e1">Hello<span>.</span></p>
-        <p class="im enter e2"><span class="bar"></span>I'm Shuvo Datta</p>
-        <h1 class="enter e3">Aspiring AI Engineer</h1>
-        <p class="lead enter e4">CSE student at BRAC University, learning machine learning and building software that solves real problems.</p>
+      <div>
+        <p class="available enter e1"><i></i>Open to internships and collaborations</p>
+        <h1 class="enter e2">Shuvo Datta</h1>
+        <p class="typed enter e3" aria-label="Aspiring AI Engineer, Python Developer, Problem Solver"><span id="typed" aria-hidden="true">Aspiring AI Engineer</span><span class="caret" aria-hidden="true"></span></p>
+        <p class="lead enter e4">Computer Science student at BRAC University, focused on machine learning and building software that solves real problems.</p>
         <div class="cta enter e5">
-          <a href="#contact" class="btn btn-primary">Let's talk</a>
-          <a href="#projects" class="btn btn-outline">My projects</a>
+          <a href="#projects" class="btn btn-primary">View my work</a>
+          <a href="#contact" class="btn btn-outline">Get in touch</a>
         </div>
         <div class="hero-social enter e6">
-          <a class="icon-btn" href="https://github.com/arnob-shuvo" target="_blank" rel="noopener" aria-label="GitHub"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg></a>
-          <a class="icon-btn" href="https://www.linkedin.com/in/shuvodatta/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-          <a class="icon-btn" href="mailto:shuvo.datta@g.bracu.ac.bd" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a>
+          <span>Find me on</span>
+          <ul>
+            <li><a class="icon-btn" href="https://github.com/arnob-shuvo" target="_blank" rel="noopener" aria-label="GitHub"><svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg></a></li>
+            <li><a class="icon-btn" href="https://www.linkedin.com/in/shuvodatta/" target="_blank" rel="noopener" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a></li>
+            <li><a class="icon-btn" href="mailto:shuvo.datta@g.bracu.ac.bd" aria-label="Email"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg></a></li>
+          </ul>
         </div>
       </div>
 
-      <div class="portrait enter e3" id="tilt">
-        <div class="ring ring-1" aria-hidden="true"></div>
-        <div class="ring ring-2" aria-hidden="true"></div>
-        <img src="shuvo-round.jpg" alt="Shuvo Datta in a dark suit and red tie, wearing a BRAC University lanyard" width="720" height="720" />
+      <div class="photo-wrap tilt enter e3" id="tilt">
+        <div class="photo-ring" aria-hidden="true"></div>
+        <img src="shuvo.jpg" alt="Shuvo Datta in a dark suit and red tie, wearing a BRAC University lanyard" width="900" height="1000" />
+        <div class="float float-1">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/></svg></span>
+          <span>BRAC University<small>B.Sc. in CSE</small></span>
+        </div>
+        <div class="float float-2">
+          <span class="ico"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a4 4 0 0 1 4 4v1h1a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-1v1a4 4 0 0 1-8 0v-1H7a3 3 0 0 1-3-3v-2a3 3 0 0 1 3-3h1V6a4 4 0 0 1 4-4z"/></svg></span>
+          <span>Focused on<small>AI and Machine Learning</small></span>
+        </div>
       </div>
     </div>
+  </div>
 
-    <ul class="tech-row container" aria-label="Technologies I work with">
-      <li>Python</li><li>PyTorch</li><li>TensorFlow</li><li>React</li><li>TypeScript</li><li>Flask</li><li>Git</li>
-    </ul>
+  <!-- Tech strip -->
+  <div class="stack-strip">
+    <div class="container">
+      <p>Technologies I work with</p>
+      <div class="marquee"><ul>
+        <li><img src="icons/python.svg" alt="" width="26" height="26">Python</li>
+        <li><img src="icons/pytorch.svg" alt="" width="26" height="26">PyTorch</li>
+        <li><img src="icons/tensorflow.svg" alt="" width="26" height="26">TensorFlow</li>
+        <li><img src="icons/react.svg" alt="" width="26" height="26">React</li>
+        <li><img src="icons/typescript.svg" alt="" width="26" height="26">TypeScript</li>
+        <li><img src="icons/flask.svg" class="invert" alt="" width="26" height="26">Flask</li>
+        <li><img src="icons/git.svg" alt="" width="26" height="26">Git</li>
+              <li><img src="icons/java.svg" alt="" width="26" height="26">Java</li>
+        <li><img src="icons/cplusplus.svg" alt="" width="26" height="26">C++</li>
+        <li><img src="icons/javascript.svg" alt="" width="26" height="26">JavaScript</li>
+        <li><img src="icons/sqlite.svg" alt="" width="26" height="26">SQLite</li>
+
+        <li aria-hidden="true"><img src="icons/python.svg" alt="" width="26" height="26">Python</li>
+        <li aria-hidden="true"><img src="icons/pytorch.svg" alt="" width="26" height="26">PyTorch</li>
+        <li aria-hidden="true"><img src="icons/tensorflow.svg" alt="" width="26" height="26">TensorFlow</li>
+        <li aria-hidden="true"><img src="icons/react.svg" alt="" width="26" height="26">React</li>
+        <li aria-hidden="true"><img src="icons/typescript.svg" alt="" width="26" height="26">TypeScript</li>
+        <li aria-hidden="true"><img src="icons/flask.svg" class="invert" alt="" width="26" height="26">Flask</li>
+        <li aria-hidden="true"><img src="icons/git.svg" alt="" width="26" height="26">Git</li>
+              <li aria-hidden="true"><img src="icons/java.svg" alt="" width="26" height="26">Java</li>
+        <li aria-hidden="true"><img src="icons/cplusplus.svg" alt="" width="26" height="26">C++</li>
+        <li aria-hidden="true"><img src="icons/javascript.svg" alt="" width="26" height="26">JavaScript</li>
+        <li aria-hidden="true"><img src="icons/sqlite.svg" alt="" width="26" height="26">SQLite</li>
+      </ul></div>
+    </div>
   </div>
 
   <!-- About -->
   <section id="about">
-    <div class="container about2">
-      <ul class="services reveal">
-        <li>
-          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6.8 10.3 11M7 17.2l3.3-4.2M13.7 11 17 6.8M13.7 13l3.3 4.2"/></svg></span>
-          <div><b>Artificial Intelligence</b><span>Machine learning and deep learning with PyTorch and TensorFlow</span></div>
-        </li>
-        <li>
-          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
-          <div><b>Software Development</b><span>Backend APIs with Flask, typed front-ends with TypeScript and React</span></div>
-        </li>
-        <li>
-          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>
-          <div><b>Problem Solving</b><span>Data structures, algorithms and clear thinking</span></div>
-        </li>
-      </ul>
-      <div class="about-copy reveal">
-        <h2>About me</h2>
-        <p>I'm a Computer Science student at BRAC University in Dhaka with one clear focus: Artificial Intelligence. I spend my time understanding how machine learning models work and writing code that actually does something useful.</p>
-        <p>For me it's not just about grades. It's about building real things that solve real problems, with discipline and consistency every day. I'm looking for internships where I can learn from experienced engineers and contribute to real projects.</p>
-        <dl class="stats">
-          <div><dt>6<span>+</span></dt><dd>Programming<br>languages</dd></div>
-          <div><dt>12<span>+</span></dt><dd>Tools and<br>frameworks</dd></div>
-          <div><dt>B.Sc<span>.</span></dt><dd>CSE at<br>BRAC University</dd></div>
+    <div class="container">
+      <div class="sec-head reveal">
+        <p class="kicker">About me</p>
+        <h2>Learning how machines learn, and building with it</h2>
+      </div>
+      <div class="about-grid reveal">
+        <div class="about-text">
+          <p>I'm a <strong>Computer Science student at BRAC University</strong> in Dhaka with one clear focus: <strong>Artificial Intelligence</strong>. I spend my time understanding how machine learning models work and writing code that actually does something useful.</p>
+          <p>For me it's not just about grades. It's about building real things that solve real problems. I believe discipline and consistency are what separate people who dream from people who execute.</p>
+          <p>I'm early in my journey, and I'm looking for opportunities to learn from experienced engineers and contribute to real projects.</p>
+        </div>
+        <dl class="facts spot">
+          <div><dt>Based in</dt><dd>Dhaka, Bangladesh</dd></div>
+          <div><dt>University</dt><dd>BRAC University</dd></div>
+          <div><dt>Degree</dt><dd>B.Sc. in CSE</dd></div>
+          <div><dt>Focus</dt><dd>AI and Machine Learning</dd></div>
+          <div><dt>Status</dt><dd class="ok">Open to internships</dd></div>
         </dl>
       </div>
+      <ul class="focus reveal">
+        <li class="spot">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 6.8 10.3 11M7 17.2l3.3-4.2M13.7 11 17 6.8M13.7 13l3.3 4.2"/></svg></span>
+          <b>Artificial Intelligence</b>
+          <span>Machine learning, deep learning and neural networks with PyTorch and TensorFlow.</span>
+        </li>
+        <li class="spot">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></span>
+          <b>Software Development</b>
+          <span>Backend APIs with Python and Flask, and typed front-end code with TypeScript and React.</span>
+        </li>
+        <li class="spot">
+          <span class="ico"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg></span>
+          <b>Problem Solving</b>
+          <span>Data structures, algorithms and breaking hard problems into clear steps.</span>
+        </li>
+      </ul>
     </div>
   </section>
 
@@ -841,7 +816,7 @@
   // Typing roles
   const roles = ['Aspiring AI Engineer', 'Python Developer', 'Machine Learning Enthusiast', 'Problem Solver'];
   const typedEl = document.getElementById('typed');
-  if (typedEl && !reduceMotion) {
+  if (!reduceMotion) {
     let r = 0, i = roles[0].length, deleting = true;
     const tick = () => {
       const word = roles[r];
@@ -891,6 +866,56 @@
     });
     tilt.addEventListener('pointerleave', () => { tilt.style.transform = ''; });
   }
+
+  // Neural network background: drifting nodes that link up near each other and the mouse
+  (() => {
+    const cv = document.getElementById('net'); const hero = cv.parentElement;
+    const ctx = cv.getContext('2d'); let w, h, dpr, nodes = [], mouse = { x: -9999, y: -9999 };
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = hero.clientWidth; h = hero.clientHeight;
+      cv.width = w * dpr; cv.height = h * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      const count = Math.round(Math.min(90, (w * h) / 14000));
+      nodes = Array.from({ length: count }, () => ({
+        x: Math.random() * w, y: Math.random() * h,
+        vx: (Math.random() - 0.5) * 0.35, vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 1.1, c: Math.random() < 0.5 ? A1 : A2
+      }));
+    };
+    const css = getComputedStyle(document.documentElement);
+    const A1 = css.getPropertyValue('--a1').trim(), A2 = css.getPropertyValue('--a2').trim();
+    const LINK = 150;
+    const draw = () => {
+      ctx.clearRect(0, 0, w, h);
+      for (let i = 0; i < nodes.length; i++) {
+        const a = nodes[i];
+        for (let j = i + 1; j < nodes.length; j++) {
+          const b = nodes[j], dx = a.x - b.x, dy = a.y - b.y, d = Math.hypot(dx, dy);
+          if (d < LINK) { ctx.strokeStyle = `rgba(${css.getPropertyValue('--am').trim()},${0.3 * (1 - d / LINK)})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke(); }
+        }
+        const md = Math.hypot(a.x - mouse.x, a.y - mouse.y);
+        if (md < 180) { ctx.strokeStyle = `rgba(${A2},${0.45 * (1 - md / 180)})`; ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke(); }
+        ctx.fillStyle = `rgba(${a.c},0.85)`; ctx.beginPath(); ctx.arc(a.x, a.y, a.r, 0, Math.PI * 2); ctx.fill();
+      }
+    };
+    const step = () => {
+      for (const n of nodes) {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+      }
+      draw(); if (running) requestAnimationFrame(step);
+    };
+    let running = false;
+    resize(); draw();
+    window.addEventListener('resize', () => { resize(); draw(); });
+    hero.addEventListener('pointermove', e => { const r = hero.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; if (!running) draw(); });
+    hero.addEventListener('pointerleave', () => { mouse.x = mouse.y = -9999; if (!running) draw(); });
+    if (!reduceMotion) {
+      // only animate while the hero is on screen
+      new IntersectionObserver(([en]) => { const was = running; running = en.isIntersecting; if (running && !was) requestAnimationFrame(step); }).observe(hero);
+    }
+  })();
 
   // Contact form opens the visitor's email app
   document.getElementById('contactForm').addEventListener('submit', e => {
