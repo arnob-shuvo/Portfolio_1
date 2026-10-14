@@ -705,6 +705,31 @@
 
       <article class="project reveal">
         <div class="window spot" aria-hidden="true">
+          <div class="window-bar"><i></i><i></i><i></i><span>robustness.py</span></div>
+<pre><span class="tk-c"># same distorted test set for every model</span>
+<span class="tk-k">for</span> name, model <span class="tk-k">in</span> models.<span class="tk-f">items</span>():
+    clean = <span class="tk-f">accuracy</span>(model, X_test)
+    <span class="tk-k">for</span> d <span class="tk-k">in</span> [<span class="tk-s">'noise'</span>, <span class="tk-s">'blur'</span>, <span class="tk-s">'rotate'</span>, <span class="tk-s">'contrast'</span>]:
+        X_d  = <span class="tk-f">distort</span>(X_test, d, seed=<span class="tk-n">42</span>)
+        drop = clean - <span class="tk-f">accuracy</span>(model, X_d)
+        results[name][d] = drop
+<span class="tk-c"># smaller drop = more robust</span> <span class="cur"></span></pre>
+        </div>
+        <div>
+          <p class="p-label">Data Science · Research project</p>
+          <h3>Robust Bengali Digit Recognition</h3>
+          <p class="desc">A study of how HOG+SVM, a custom CNN and MobileNetV2 hold up when handwritten Bengali digits are degraded by noise, blur, rotation and contrast loss, and whether data augmentation closes the gap.</p>
+          <ul class="features" data-stagger>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Trained and compared three model families on NumtaDB; MobileNetV2 led with 85.2% clean accuracy</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Showed the most accurate, most stable and most fragile models are three different systems</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Distortion-based augmentation lifted CNN accuracy under blur from 13% to 61%</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>TensorFlow</span><span>scikit-learn</span><span>Computer Vision</span><span>CSE437</span></div>
+        </div>
+      </article>
+
+      <article class="project flip reveal">
+        <div class="window spot" aria-hidden="true">
           <div class="window-bar"><i></i><i></i><i></i><span>app.py</span></div>
 <pre><span class="tk-k">@app</span>.<span class="tk-f">route</span>(<span class="tk-s">'/addGame'</span>, methods=[<span class="tk-s">'POST'</span>])
 <span class="tk-k">def</span> <span class="tk-f">add_game</span>():
@@ -729,7 +754,7 @@
         </div>
       </article>
 
-      <article class="project flip reveal">
+      <article class="project reveal">
         <div class="window spot" aria-hidden="true">
           <div class="window-bar"><i></i><i></i><i></i><span>solutions.ts</span></div>
 <pre><span class="tk-k">function</span> <span class="tk-f">getProperty</span>&lt;<span class="tk-p">T</span>, <span class="tk-p">K</span> <span class="tk-k">extends keyof</span> <span class="tk-p">T</span>&gt;(
