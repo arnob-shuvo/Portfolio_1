@@ -123,6 +123,8 @@
       border: 1px solid var(--line); border-radius: 999px;
       font-size: 0.88rem; color: var(--muted); background: rgba(20,28,51,0.7);
     }
+    .available i { flex: none; }
+    @media (max-width: 520px) { .available { font-size: 0.8rem; border-radius: 14px; line-height: 1.35; } }
     .available i { width: 8px; height: 8px; border-radius: 50%; background: var(--green); box-shadow: 0 0 0 4px rgba(52,211,153,0.18); animation: pulse 2.4s ease-in-out infinite; }
     @keyframes pulse { 50% { box-shadow: 0 0 0 7px rgba(52,211,153,0); } }
     .hero h1 {
