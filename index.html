@@ -533,6 +533,9 @@
     .paper h3 a:hover { color: var(--violet-hi); }
     .paper-authors { color: var(--muted); font-size: .98rem; }
     .paper-authors strong { color: var(--text); font-weight: 700; text-decoration: underline; text-decoration-color: rgb(var(--a1)); text-decoration-thickness: 2px; text-underline-offset: 3px; }
+    .paper-sup { color: var(--muted); font-size: .92rem; margin-top: .3rem; }
+    .paper-sup a { color: var(--text); font-weight: 600; text-decoration: none; border-bottom: 1px solid rgba(var(--a1),.45); }
+    .paper-sup a:hover { border-bottom-color: currentColor; }
     .paper-venue { color: var(--dim); font-size: .92rem; font-style: italic; margin-top: .35rem; }
     .paper-sum { color: var(--muted); margin: 1.1rem 0 1.2rem; }
     .paper .p-links .btn-outline { font-size: .85rem; }
@@ -699,6 +702,7 @@
           <h3><a href="https://ieeexplore.ieee.org/abstract/document/11367503" target="_blank" rel="noopener">An Efficient Deep Learning Framework for Diabetic Retinopathy Classification using Generative Data Augmentation and Knowledge Distillation</a></h3>
           <p class="paper-authors">Tasnimul Mohammad Fahim, Sarika Bintey Sabur, Jawad Bin Alam, Tanzim Hossain Ayon, <strong>Shuvo Datta</strong>, Azwad Aziz, Amitabha Chakrabarty</p>
           <p class="paper-venue">2025 IEEE 7th International Conference on Sustainable Technologies for Industry 5.0 (STI), Dhaka, Bangladesh</p>
+          <p class="paper-sup">Undergraduate thesis · Supervised by <a href="https://cse.bracu.ac.bd/faculty_profile/69/dr_amitabha_chakrabarty" target="_blank" rel="noopener">Dr. Amitabha Chakrabarty</a>, BRAC University</p>
           <p class="paper-sum">Diabetic retinopathy is a leading cause of preventable blindness. We built a three-stage framework for automated screening: Progressive Growing GANs generate synthetic eye images to fix class imbalance, an EfficientNet-V2 and Vision Transformer ensemble classifies five severity levels, and knowledge distillation shrinks the model into a lightweight MobileNetV2 that can run in low-resource clinics.</p>
           <div class="tags"><span>Deep Learning</span><span>GANs</span><span>Vision Transformer</span><span>Knowledge Distillation</span><span>Medical Imaging</span></div>
           <div class="p-links">
