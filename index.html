@@ -270,6 +270,9 @@
     }
     .tiles li:hover { border-color: rgba(var(--a1),0.55); color: var(--text); transform: translateY(-3px); }
     .tiles img { width: 36px; height: 36px; }
+    .tiles .script { width: 36px; height: 36px; display: grid; place-items: center; font-size: 1.55rem; font-weight: 700; line-height: 1; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .tiles .script[lang="bn"] { font-size: 2rem; }
+    .tiles .lvl { display: block; margin-top: -0.35rem; font-size: 0.74rem; font-weight: 500; color: var(--dim); }
     .tiles .glyph { width: 36px; height: 36px; display: grid; place-items: center; color: var(--text); }
 
     /* Education timeline */
@@ -859,6 +862,14 @@
             <li><img src="icons/git.svg" alt="" width="36" height="36">Git</li>
             <li><span class="glyph"><svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg></span>GitHub</li>
             <li><span class="glyph"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m6 9 4 3-4 3M12 15h5"/></svg></span>Linux</li>
+          </ul>
+        </div>
+        <div class="skill-group sg-speak">
+          <h3>Spoken languages<small>What I communicate in</small></h3>
+          <ul class="tiles" data-stagger>
+            <li><span class="script" lang="bn" aria-hidden="true">অ</span>Bangla<span class="lvl">Native</span></li>
+            <li><span class="script" aria-hidden="true">Aa</span>English<span class="lvl">Professional</span></li>
+            <li><span class="script" lang="zh" aria-hidden="true">中</span>Chinese<span class="lvl">Basic</span></li>
           </ul>
         </div>
       </div>
