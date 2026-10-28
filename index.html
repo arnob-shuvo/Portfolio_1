@@ -16,7 +16,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%237C6CFF'/%3E%3Cg fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M56 27 32 15 8 27l24 12 24-12z'/%3E%3Cpath d='M18 32v12c7 5 21 5 28 0V32'/%3E%3Cpath d='M56 27v12'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@500;600&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -65,6 +65,11 @@
     ::selection { background: var(--violet); color: #fff; }
 
     .container { width: min(1160px, 100% - 2 * clamp(1rem, 5vw, 4rem)); margin-inline: auto; }
+
+    /* Headings and the name use Bricolage Grotesque; body text stays Plus Jakarta Sans */
+    h1, h2, h3, .logo { font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', 'Hind Siliguri', system-ui, sans-serif; font-optical-sizing: auto; }
+    .hero h1 { font-weight: 700; letter-spacing: -0.03em; }
+    .sec-head h2, .project h3, .cta-band h3 { font-weight: 700; }
 
     /* ── Nav ─────────────────────────────────────────── */
     .nav {
