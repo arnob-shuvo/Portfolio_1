@@ -72,9 +72,9 @@
       background: rgba(11,16,32,0.75);
       backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
       border-bottom: 1px solid transparent;
-      transition: border-color .25s ease;
+      transition: border-color .3s ease, background .3s ease, backdrop-filter .3s ease;
     }
-    .nav.scrolled { border-bottom-color: var(--line); background: rgba(11,16,32,0.62); }
+    .nav.scrolled { border-bottom-color: var(--line); }
     .nav .container { transition: height .3s ease; }
     .nav.scrolled .container { height: 60px; }
     .nav-links { position: relative; }
@@ -102,7 +102,7 @@
     .btn-outline:hover { border-color: var(--violet); transform: translateY(-2px); }
 
     /* ── Hero ────────────────────────────────────────── */
-    .hero { position: relative; isolation: isolate; padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(3.5rem, 7vw, 5rem); }
+    .hero { position: relative; isolation: isolate; margin-top: -72px; padding: calc(72px + clamp(3rem, 7vw, 5.5rem)) 0 clamp(3.5rem, 7vw, 5rem); }
     .hero::before {
       content: ''; position: absolute; z-index: -1;
       width: 760px; height: 760px; right: -140px; top: -120px;
@@ -468,7 +468,9 @@
       --text: #F2F4F8; --muted: #AAB2C3; --dim: #808AA0;
     }
     body { background: radial-gradient(900px 600px at 85% -5%, rgba(255,107,61,0.12), transparent 60%), var(--bg) !important; }
-    .nav { background: rgba(27,34,48,0.82) !important; }
+    /* Nav is see-through over the hero, frosted once the page scrolls */
+    .nav { background: transparent !important; backdrop-filter: none; -webkit-backdrop-filter: none; }
+    .nav.scrolled, .nav:has(.nav-right.open) { background: rgba(27,34,48,0.72) !important; backdrop-filter: blur(14px) saturate(1.3); -webkit-backdrop-filter: blur(14px) saturate(1.3); }
     .available, .btn-outline { background-color: rgba(36,45,62,0.6) !important; }
     .float { background: rgba(36,45,62,0.85) !important; }
     .window { background-color: #161C28 !important; }
