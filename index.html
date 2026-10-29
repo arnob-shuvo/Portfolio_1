@@ -13,10 +13,10 @@
   <meta property="og:image" content="https://shuvodatta.vercel.app/shuvo.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="theme-color" content="#0B1020" />
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23A82438'/%3E%3Cstop offset='.55' stop-color='%23BE5C4C'/%3E%3Cstop offset='1' stop-color='%23D4A060'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cg fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M56 27 32 15 8 27l24 12 24-12z'/%3E%3Cpath d='M18 32v12c7 5 21 5 28 0V32'/%3E%3Cpath d='M56 27v12'/%3E%3C/g%3E%3C/svg%3E" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23A82438'/%3E%3Cstop offset='1' stop-color='%23D65C68'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cg fill='none' stroke='white' stroke-width='5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M56 27 32 15 8 27l24 12 24-12z'/%3E%3Cpath d='M18 32v12c7 5 21 5 28 0V32'/%3E%3Cpath d='M56 27v12'/%3E%3C/g%3E%3C/svg%3E" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&family=Hind+Siliguri:wght@500;600&display=swap" rel="stylesheet">
   <script>document.documentElement.classList.add('js');</script>
 
   <style>
@@ -65,11 +65,6 @@
     ::selection { background: var(--violet); color: #fff; }
 
     .container { width: min(1160px, 100% - 2 * clamp(1rem, 5vw, 4rem)); margin-inline: auto; }
-
-    /* Headings and the name use Bricolage Grotesque; body text stays Plus Jakarta Sans */
-    h1, h2, h3, .logo { font-family: 'Bricolage Grotesque', 'Plus Jakarta Sans', 'Hind Siliguri', system-ui, sans-serif; font-optical-sizing: auto; }
-    .hero h1 { font-weight: 700; letter-spacing: -0.03em; }
-    .sec-head h2, .project h3, .cta-band h3 { font-weight: 700; }
 
     /* ── Nav ─────────────────────────────────────────── */
     .nav {
@@ -465,10 +460,10 @@
       .js .reveal, .js .hero .enter { opacity: 1; transform: none; }
     }
 
-    /* ═══ Colour scheme: charcoal suit + burgundy tie + gold ═══ */
+    /* ═══ Colour scheme: charcoal suit + burgundy tie ═══ */
     :root {
-      --a1: 168,36,56; --a2: 212,160,96; --am: 190,92,76;
-      --violet-hi: #D9707A; --hl1: #EBC9A0; --hl2: #E9C38E; --band: #25262B;
+      --a1: 168,36,56; --a2: 214,92,104; --am: 190,62,78;
+      --violet-hi: #D9707A; --hl1: #E6E2DD; --hl2: #E6E2DD; --band: #25262B;
       --bg: #1A1B1F; --bg-2: #1F2025; --surface: #26272D; --surface-2: #2D2E35; --line: #383A42;
       --text: #F5F3EF; --muted: #B5B3B0; --dim: #8A8987;
     }
@@ -483,11 +478,11 @@
     .facts, .focus li, .skills, .form { background-color: rgba(38,39,45,0.7) !important; }
     .stack-strip { background: rgba(31,32,37,0.8) !important; }
     section.alt { background: linear-gradient(180deg, rgba(31,32,37,0.95), rgba(31,32,37,0.7)) !important; }
-    .cta-band { background: radial-gradient(600px 300px at 15% 0%, rgba(168,36,56,0.55), transparent 60%), radial-gradient(500px 300px at 90% 100%, rgba(212,160,96,0.28), transparent 60%), #25262B !important; }
-    .float-2 .ico { background: rgba(212,160,96,0.16) !important; color: #E3B97E !important; }
-    .typed { color: #E3B97E; }
-    .features svg { color: #E3B97E; }
-    .focus li:nth-child(3) .ico { background: rgba(212,160,96,0.16); color: #E3B97E; }
+    .cta-band { background: radial-gradient(600px 300px at 15% 0%, rgba(168,36,56,0.55), transparent 60%), radial-gradient(500px 300px at 90% 100%, rgba(214,92,104,0.25), transparent 60%), #25262B !important; }
+    .float-2 .ico { background: rgba(214,92,104,0.14) !important; color: #E58A92 !important; }
+    .typed { color: #D9707A; }
+    .features svg { color: #D9707A; }
+    .focus li:nth-child(3) .ico { background: rgba(214,92,104,0.14); color: #D9707A; }
 
     /* ═══ Extra animations ═══ */
     /* Rotating light around the photo */
