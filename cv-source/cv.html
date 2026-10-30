@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><title>Shuvo Datta – CV</title>
+<style>
+  @page { size: A4; margin: 0; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Liberation Sans', Arial, sans-serif; color: #1b1f24; font-size: 9.9pt; line-height: 1.21; }
+  .page { width: 210mm; height: 297mm; padding: 32pt 42.75pt 0 42.75pt; position: relative; overflow: hidden; }
+  a { color: inherit; text-decoration: none; }
+  header { display: flex; justify-content: space-between; align-items: flex-start; }
+  h1 { font-size: 21pt; color: #0f2a44; line-height: 1.15; letter-spacing: -0.2pt; }
+  .role { font-size: 10.5pt; font-weight: 700; color: #2f5d86; margin-top: 3pt; }
+  .contact { font-size: 9pt; color: #3b4652; margin-top: 5pt; line-height: 1.4; }
+  .contact span + span { margin-left: 10pt; }
+  .photo { width: 75.75pt; height: 101.25pt; border: 0.75pt solid #c9d2db; object-fit: cover; flex: none; }
+  h2 { font-size: 10pt; color: #0f2a44; letter-spacing: 1.2pt; border-bottom: 0.75pt solid #0f2a44; padding-bottom: 2.5pt; margin: 7.5pt 0 4pt; }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 10pt; }
+  .row .r { font-size: 9.2pt; color: #4a5560; white-space: nowrap; }
+  b { font-weight: 700; }
+  .it { font-style: italic; color: #3b4652; }
+  .edu-school { margin-top: 3.5pt; }
+  ul { list-style: none; margin: 1pt 0 0; }
+  li { position: relative; padding-left: 13pt; margin-top: 0.6pt; }
+  li::before { content: ''; position: absolute; left: 0; top: 0.5em; width: 3pt; height: 3pt; background: #1b1f24; }
+  .item + .item { margin-top: 4pt; }
+  .skills { display: grid; grid-template-columns: 98pt 1fr; row-gap: 1.5pt; }
+</style></head>
+<body><div class="page">
+<header>
+  <div>
+    <h1>Shuvo Datta</h1>
+    <p class="role">Computer Science &amp; Engineering Student · AI/ML and Software Development</p>
+    <p class="contact"><span>+880 1641-654405 / +880 1577-700049</span><span><a href="mailto:shuvodatta.me@gmail.com">shuvodatta.me@gmail.com</a></span><span>Dhaka, Bangladesh</span><br>
+    <span><a href="https://linkedin.com/in/shuvodatta">linkedin.com/in/shuvodatta</a></span><span><a href="https://github.com/arnob-shuvo">github.com/arnob-shuvo</a></span><span><a href="https://shuvodatta.vercel.app">shuvodatta.vercel.app</a></span></p>
+  </div>
+  <img class="photo" src="photo.jpeg" alt="">
+</header>
+
+<h2>SUMMARY</h2>
+<p>Final-year CSE student at BRAC University with a published IEEE conference paper on deep learning for medical imaging. Hands-on with Python, machine learning and backend development (Flask, SQLite, REST APIs). Looking for an internship or entry-level role where I can apply programming and data skills to real business problems and learn from experienced teams.</p>
+
+<h2>EDUCATION</h2>
+<div class="row"><b>BRAC University, Dhaka</b><span class="r">2021 – 2027 (expected)</span></div>
+<p class="it">B.Sc. in Computer Science and Engineering</p>
+<p>Relevant coursework: Programming, Data Structures, Algorithms, Software Engineering, Systems Analysis &amp; Design, Database Systems, Computer Networks</p>
+<div class="row edu-school"><b>Chattogram Govt. Model School &amp; College</b><span class="r">HSC, 2018</span></div>
+<div class="row"><b>Cambrian College, Chattogram</b><span class="r">HSC (transferred), 2016</span></div>
+<div class="row"><b>Ispahani Adarsha High School, Chattogram</b><span class="r">SSC, 2016</span></div>
+<div class="row"><b>BEPZA Public School &amp; College, Chattogram</b><span class="r">Primary, 2005 – 2009</span></div>
+
+<h2>PUBLICATION</h2>
+<p><b>Efficient Deep Learning Framework for Diabetic Retinopathy Classification Using Generative Data Augmentation and Knowledge Distillation</b></p>
+<p class="it">2025 IEEE 7th International Conference on Sustainable Technologies for Industry 5.0 (STI), Dhaka · Co-author · DOI: <a href="https://doi.org/10.1109/STI69347.2025.11367503">10.1109/STI69347.2025.11367503</a></p>
+<ul>
+  <li>Undergraduate thesis: a three-stage screening framework using GAN-generated synthetic images, an EfficientNet-V2 + Vision Transformer ensemble, and a distilled MobileNetV2 for low-resource clinics.</li>
+  <li>Reached 95.8% accuracy on APTOS 2019 (0.975 quadratic weighted kappa) while cutting model parameters by 96.8%.</li>
+</ul>
+
+<h2>PROJECTS</h2>
+<div class="item">
+  <div class="row"><b>Robust Bengali Digit Recognition</b><span class="r">Python · TensorFlow · scikit-learn</span></div>
+  <ul>
+    <li>Compared HOG+SVM, a custom CNN and MobileNetV2 on handwritten Bengali digits degraded by noise, blur, rotation and low contrast (course research project).</li>
+    <li>Built the HOG features, trained and evaluated models; distortion-based augmentation raised CNN accuracy under blur from 13% to 61%.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span><b>Bashpo Game Store – Backend</b> <span class="it">· Course project, Systems Analysis &amp; Design</span></span><span class="r">Python · Flask · SQLite · REST API</span></div>
+  <ul>
+    <li>Built a REST backend for an online game store: add games with genre, release date and cover upload, reject duplicates, and list new releases and games by genre.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><span><b>BridgeNet Campus – Network Design</b> <span class="it">· Course project, Computer Networks</span></span><span class="r">Cisco Packet Tracer · VLSM · RIPv2</span></div>
+  <ul>
+    <li>Designed a six-department university network in a team of four, with VLSM addressing, RIPv2 alongside static routes, and floating static routes for automatic failover.</li>
+    <li>Configured the DNS, web, email and DHCP servers and all end devices; verified cross-domain email and name-based web access.</li>
+  </ul>
+</div>
+
+<h2>SKILLS</h2>
+<div class="skills">
+  <b>Programming</b><span>Python, C, C++, Java, JavaScript, TypeScript</span>
+  <b>AI / Data</b><span>PyTorch, TensorFlow, scikit-learn, deep learning, computer vision</span>
+  <b>Web &amp; Tools</b><span>React, Flask, SQLite, REST APIs, Git/GitHub, Linux</span>
+  <b>Networking</b><span>Cisco Packet Tracer, subnetting (VLSM), static and dynamic routing, DNS, DHCP</span>
+  <b>Languages</b><span>Bengali (native), English (professional), Mandarin Chinese (basic)</span>
+</div>
+
+<h2>ACTIVITIES &amp; ACHIEVEMENTS</h2>
+<ul>
+  <li><b>Senior Executive</b>, BRAC University Entrepreneurship Development Forum (BUEDF).</li>
+  <li>Undergraduate thesis accepted and published at an IEEE international conference (2025).</li>
+  <li>Ranked first in class from grades 1 to 5, and in the top three from grades 7 to 9.</li>
+</ul>
+</div></body></html>
