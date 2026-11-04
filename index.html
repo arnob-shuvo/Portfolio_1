@@ -421,7 +421,7 @@
     /* Mouse spotlight on cards */
     .spot { position: relative; overflow: hidden; }
     .spot::before {
-      content: ''; position: absolute; inset: 0; border-radius: inherit; pointer-events: none; z-index: 0;
+      content: ''; position: absolute; inset: 0; width: auto; height: auto; border-radius: inherit; pointer-events: none; z-index: 0;
       background: radial-gradient(380px circle at var(--mx, -999px) var(--my, -999px), rgba(var(--am),0.16), transparent 60%);
       opacity: 0; transition: opacity .3s ease;
     }
