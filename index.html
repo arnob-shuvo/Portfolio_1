@@ -292,6 +292,8 @@
     .tabbar button { font-family: var(--mono); font-size: 0.72rem; padding: 0.35rem 0.85rem; border-radius: 999px; border: 1px solid var(--line); background: transparent; color: var(--muted); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
     .tabbar button:hover { color: #fff; }
     .tabbar button[aria-selected="true"] { background: rgba(var(--a1),0.2); border-color: rgba(var(--a1),0.55); color: #fff; }
+    .shot { padding: 1.1rem 1.2rem 1.3rem; position: relative; }
+    .shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: opacity .25s ease; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; }
@@ -989,6 +991,7 @@
           <div class="tabbar" role="tablist" aria-label="Bashpo views">
             <button type="button" role="tab" id="bp-t1" aria-selected="true" aria-controls="bp-store">Storefront</button>
             <button type="button" role="tab" id="bp-t2" aria-selected="false" aria-controls="bp-roles" tabindex="-1">Roles</button>
+            <button type="button" role="tab" id="bp-t4" aria-selected="false" aria-controls="bp-rev" tabindex="-1">Revenue</button>
             <button type="button" role="tab" id="bp-t3" aria-selected="false" aria-controls="bp-code" tabindex="-1">Code</button>
           </div>
           <div class="tabstack">
@@ -1012,6 +1015,10 @@
             <div class="split"><b class="mine">sale revenue</b><i>→</i><b>developer wallet</b><i>+</i><b>admin wallet</b></div>
             <p class="roles-note"><span>★</span> the parts I built</p>
           </div>
+            <div class="shot tabpanel" id="bp-rev" role="tabpanel" aria-labelledby="bp-t4" data-off inert>
+              <img src="images/bashpo/admin-revenue.webp" alt="Admin revenue panel showing the total cashflow, each developer's revenue and the top-earning game" width="1231" height="1006" loading="lazy">
+              <p class="roles-note"><span>★</span> The admin revenue panel I built. Sample data from the project demo.</p>
+            </div>
             <div class="tabpanel" id="bp-code" role="tabpanel" aria-labelledby="bp-t3" data-off inert>
 <pre><span class="tk-k">@app</span>.<span class="tk-f">route</span>(<span class="tk-s">'/addGame'</span>, methods=[<span class="tk-s">'POST'</span>])
 <span class="tk-k">def</span> <span class="tk-f">add_game</span>():
