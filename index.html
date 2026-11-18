@@ -1497,12 +1497,35 @@
         else { panel.setAttribute('data-off', ''); panel.setAttribute('inert', ''); }
       });
     };
+    // Auto-advance while the card is on screen. It pauses on hover or focus,
+    // and stops for good once the visitor picks a tab or touches the window.
+    const win = bar.closest('.window');
+    let timer = null, visible = false, paused = false, stopped = reduceMotion;
+    const step = () => {
+      const cur = tabs.findIndex(b => b.getAttribute('aria-selected') === 'true');
+      show(tabs[(cur + 1) % tabs.length]);
+    };
+    const sync = () => {
+      const run = visible && !paused && !stopped && !document.hidden;
+      if (run && !timer) timer = setInterval(step, 4500);
+      else if (!run && timer) { clearInterval(timer); timer = null; }
+    };
+    const stopAuto = () => { stopped = true; sync(); };
+    if (!stopped && 'IntersectionObserver' in window) {
+      new IntersectionObserver(es => { visible = es[0].isIntersecting; sync(); }, { threshold: 0.6 }).observe(win);
+      document.addEventListener('visibilitychange', sync);
+      win.addEventListener('pointerenter', e => { if (e.pointerType === 'mouse') { paused = true; sync(); } });
+      win.addEventListener('pointerleave', e => { if (e.pointerType === 'mouse') { paused = false; sync(); } });
+      win.addEventListener('focusin', () => { paused = true; sync(); });
+      win.addEventListener('focusout', () => { paused = false; sync(); });
+      win.addEventListener('pointerdown', e => { if (e.pointerType !== 'mouse') stopAuto(); });
+    }
     tabs.forEach((b, i) => {
-      b.addEventListener('click', () => show(b));
+      b.addEventListener('click', () => { stopAuto(); show(b); });
       b.addEventListener('keydown', e => {
         if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-        show(n); n.focus();
+        stopAuto(); show(n); n.focus();
       });
     });
   });
