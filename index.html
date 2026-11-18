@@ -295,6 +295,15 @@
     .tabbar button[aria-selected="true"] { background: rgba(var(--a1),0.2); border-color: rgba(var(--a1),0.55); color: #fff; }
     .shot { padding: 1.1rem 1.2rem 1.3rem; position: relative; }
     .shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+    .binviz svg { width: 100%; height: auto; display: block; }
+    .binviz .bl { font-family: var(--mono); font-size: 10px; fill: #C7CCE0; text-anchor: middle; letter-spacing: .04em; }
+    .binviz .bl.g { fill: #28C840; } .binviz .bl.a { fill: #FEBC2E; } .binviz .bl.s { fill: var(--dim); font-size: 9px; } .binviz .bl.l { fill: #7C83FF; }
+    .binviz .tray { transform-origin: 270px 156px; animation: trayTilt 9s ease-in-out infinite; }
+    .binviz .itemA { animation: dropA 9s ease-in infinite; } .binviz .itemB { animation: dropB 9s ease-in infinite; }
+    @keyframes trayTilt { 0%,22%{transform:rotate(0)} 30%,40%{transform:rotate(-14deg)} 48%,70%{transform:rotate(0)} 78%,88%{transform:rotate(14deg)} 96%,100%{transform:rotate(0)} }
+    @keyframes dropA { 0%,24%{transform:translate(0,0);opacity:1} 36%{transform:translate(-62px,10px);opacity:1} 46%{transform:translate(-70px,130px);opacity:1} 50%,100%{transform:translate(-70px,140px);opacity:0} }
+    @keyframes dropB { 0%,52%{transform:translate(0,0);opacity:0} 56%,72%{transform:translate(0,0);opacity:1} 84%{transform:translate(62px,10px);opacity:1} 94%{transform:translate(70px,130px);opacity:1} 98%,100%{transform:translate(70px,140px);opacity:0} }
+    @media (prefers-reduced-motion: reduce) { .binviz .tray, .binviz .itemA, .binviz .itemB { animation: none; } .binviz .itemB { opacity: 0; } }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: opacity .25s ease; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; }
@@ -959,13 +968,64 @@
       </article>
 
       <article class="project flip reveal">
-        <div class="window spot" aria-hidden="true">
+        <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>smart_bin.flow</span></div>
+          <div class="tabbar" role="tablist" aria-label="Smart Waste Segregator views">
+            <button type="button" role="tab" id="wb-t0" aria-selected="true" aria-controls="wb-bin">Bin</button>
+            <button type="button" role="tab" id="wb-t1" aria-selected="false" aria-controls="wb-flow" tabindex="-1">Flow</button>
+            <button type="button" role="tab" id="wb-t2" aria-selected="false" aria-controls="wb-circuit" tabindex="-1">Circuit</button>
+            <button type="button" role="tab" id="wb-t3" aria-selected="false" aria-controls="wb-model" tabindex="-1">Model</button>
+          </div>
+          <div class="tabstack">
+            <div class="shot tabpanel binviz" id="wb-bin" role="tabpanel" aria-labelledby="wb-t0">
+              <svg viewBox="0 0 480 330" role="img" aria-label="Illustration of the smart bin: a camera on a tripod looks at a tilting tray that drops waste into a biodegradable or non-biodegradable compartment, with gas sensors, a buzzer and an LCD">
+                <ellipse cx="270" cy="318" rx="170" ry="8" fill="#000" opacity=".35"/>
+                <!-- tripod + camera -->
+                <g stroke="#3A4466" stroke-width="3" stroke-linecap="round"><line x1="62" y1="190" x2="38" y2="312"/><line x1="62" y1="190" x2="62" y2="314"/><line x1="62" y1="190" x2="88" y2="312"/></g>
+                <rect x="40" y="150" width="46" height="38" rx="6" fill="#111833" stroke="#7C83FF" stroke-width="2"/>
+                <circle cx="63" cy="169" r="9" fill="#0A0F1E" stroke="#7C83FF" stroke-width="2"/><circle cx="63" cy="169" r="3.5" fill="#7C83FF"/>
+                <path d="M86 169 L222 128 M86 169 L222 160" stroke="#7C83FF" stroke-width="1.2" stroke-dasharray="4 5" opacity=".6" fill="none"/>
+                <text x="63" y="142" class="bl">ESP32-CAM</text>
+                <!-- bin body -->
+                <rect x="150" y="175" width="240" height="135" rx="10" fill="#0E1430" stroke="#3A4466" stroke-width="2"/>
+                <rect x="158" y="183" width="108" height="119" rx="6" fill="#28C840" opacity=".12"/>
+                <rect x="274" y="183" width="108" height="119" rx="6" fill="#FEBC2E" opacity=".12"/>
+                <line x1="270" y1="175" x2="270" y2="310" stroke="#3A4466" stroke-width="2"/>
+                <text x="212" y="294" class="bl g">BIODEGRADABLE</text>
+                <text x="328" y="294" class="bl a">NON-BIO</text>
+                <!-- gas sensors + buzzer -->
+                <circle cx="188" cy="204" r="9" fill="#111833" stroke="#28C840" stroke-width="2"/><text x="188" y="226" class="bl s">MQ-2</text>
+                <circle cx="352" cy="204" r="9" fill="#111833" stroke="#FEBC2E" stroke-width="2"/><text x="352" y="226" class="bl s">MQ-135</text>
+                <g stroke="#C7CCE0" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".8"><path d="M404 228 q8 6 0 12"/><path d="M410 224 q13 10 0 20"/></g>
+                <rect x="392" y="226" width="8" height="14" rx="2" fill="#C7CCE0"/><text x="418" y="262" class="bl s">buzzer</text>
+                <!-- LCD -->
+                <rect x="222" y="238" width="96" height="28" rx="4" fill="#0A0F1E" stroke="#7C83FF" stroke-width="1.5"/>
+                <text x="270" y="256" class="bl l">SMART BIN</text>
+                <!-- tray (servo) -->
+                <rect x="256" y="160" width="28" height="16" rx="3" fill="#111833" stroke="#7C83FF" stroke-width="2"/>
+                <g class="tray"><rect x="168" y="152" width="204" height="8" rx="4" fill="#C7CCE0"/><circle cx="270" cy="156" r="5" fill="#7C83FF"/></g>
+                <circle class="itemA" cx="270" cy="141" r="9" fill="#28C840"/>
+                <rect class="itemB" x="261" y="132" width="18" height="18" rx="3" fill="#FEBC2E"/>
+                <text x="270" y="118" class="bl s">servo tray</text>
+              </svg>
+              <p class="roles-note"><span>★</span> My own illustration of the bin. We have no photo of the finished build.</p>
+            </div>
+            <div class="tabpanel" id="wb-flow" role="tabpanel" aria-labelledby="wb-t1" data-off inert>
 <pre><span class="tk-f">ESP32-CAM</span> ─<span class="tk-c">UART</span>─▶ <span class="tk-f">Arduino Uno</span>
 <span class="tk-c">Edge Impulse</span>       │
                   ├─ <span class="tk-k">servo</span> → basket
                   ├─ <span class="tk-k">MQ-2/135</span> → buzzer
                   └─ <span class="tk-k">I2C LCD</span> → status <span class="cur"></span></pre>
+            </div>
+            <div class="shot tabpanel" id="wb-circuit" role="tabpanel" aria-labelledby="wb-t2" data-off inert>
+              <img src="images/waste-bin/circuit.webp" alt="Wiring diagram: ESP32-CAM, MQ-2 and MQ-135 gas sensors, servo, buzzer and I2C LCD connected to an Arduino Uno through a breadboard" width="608" height="480" loading="lazy">
+              <p class="roles-note"><span>★</span> The wiring diagram from our report. The gas sensors are the part I wired and tested.</p>
+            </div>
+            <div class="shot tabpanel" id="wb-model" role="tabpanel" aria-labelledby="wb-t3" data-off inert>
+              <img src="images/waste-bin/model.webp" alt="Edge Impulse results: F1 score 90.6 percent, confusion matrix for background, degradable and non-degradable, inferencing time 1140 ms" width="801" height="549" loading="lazy">
+              <p class="roles-note"><span>★</span> Edge Impulse results on the validation set. It runs on the ESP32-CAM at about 1.1 s per frame.</p>
+            </div>
+          </div>
         </div>
         <div>
           <p class="p-label">Computer Interfacing · CSE360 lab project</p>
@@ -1351,10 +1411,9 @@
     });
   });
 
-  // Bashpo window tabs
-  (() => {
-    const tabs = [...document.querySelectorAll('.tabbar [role="tab"]')];
-    if (!tabs.length) return;
+  // Window tabs (one independent tab set per card)
+  document.querySelectorAll('.tabbar').forEach(bar => {
+    const tabs = [...bar.querySelectorAll('[role="tab"]')];
     const show = t => {
       tabs.forEach(b => {
         const on = b === t, panel = document.getElementById(b.getAttribute('aria-controls'));
@@ -1371,7 +1430,7 @@
         show(n); n.focus();
       });
     });
-  })();
+  });
 
   // 3D tilt on the photo (mouse and trackpad only). iPadOS reports (hover: none) even with a trackpad
   // attached, so decide by pointerType in the handler instead of a media query.
