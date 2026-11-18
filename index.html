@@ -315,8 +315,13 @@
     .atable td:nth-child(2) { color: #7C83FF; } .atable td:last-child { color: var(--dim); } 
     @media (max-width: 520px) { .atable { font-size: 0.66rem; } .atable th, .atable td { padding: 0.3rem 0.25rem; } }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
-    .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: opacity .25s ease; }
-    .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; }
+    .tabstack { overflow: hidden; }
+    .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s; }
+    .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s .55s; }
+    .tabstack > .tabpanel[data-pos="l"] { transform: translateX(-100%); }
+    .tabstack > .tabpanel[data-pos="r"] { transform: translateX(100%); }
+    .tabstack > .tabpanel.noanim { transition: none !important; }
+    @media (prefers-reduced-motion: reduce) { .tabstack > .tabpanel, .tabstack > .tabpanel[data-off] { transition: opacity .2s ease; } .tabstack > .tabpanel[data-pos] { transform: none; } }
     @media (max-width: 520px) { .store-top { flex-wrap: wrap; } .store-top .wallet { margin-left: auto; } .store-search { order: 3; flex: 1 1 100%; } .game .cover strong { font-size: 0.72rem; } .game .meta > span:first-child { display: none; } .game .meta { justify-content: flex-end; } }
 
     /* Network topology panel */
@@ -1489,13 +1494,21 @@
   // Window tabs (one independent tab set per card)
   document.querySelectorAll('.tabbar').forEach(bar => {
     const tabs = [...bar.querySelectorAll('[role="tab"]')];
-    const show = t => {
+    const show = (t, dir) => {
+      const cur = tabs.find(b => b.getAttribute('aria-selected') === 'true');
+      if (t === cur) return;
+      if (!dir) dir = tabs.indexOf(t) > tabs.indexOf(cur) ? 1 : -1;
+      const inP = document.getElementById(t.getAttribute('aria-controls'));
+      const outP = document.getElementById(cur.getAttribute('aria-controls'));
+      // park the incoming panel on the side it enters from (no animation), then slide both
+      inP.classList.add('noanim'); inP.dataset.pos = dir > 0 ? 'r' : 'l'; void inP.offsetWidth; inP.classList.remove('noanim');
       tabs.forEach(b => {
         const on = b === t, panel = document.getElementById(b.getAttribute('aria-controls'));
         b.setAttribute('aria-selected', on); b.tabIndex = on ? 0 : -1;
-        if (on) { panel.removeAttribute('data-off'); panel.removeAttribute('inert'); }
+        if (on) { panel.removeAttribute('data-off'); panel.removeAttribute('inert'); delete panel.dataset.pos; }
         else { panel.setAttribute('data-off', ''); panel.setAttribute('inert', ''); }
       });
+      outP.dataset.pos = dir > 0 ? 'l' : 'r';
     };
     // Auto-advance while the card is on screen. It pauses on hover or focus,
     // and stops for good once the visitor picks a tab or touches the window.
@@ -1503,7 +1516,7 @@
     let timer = null, visible = false, paused = false, stopped = reduceMotion;
     const step = () => {
       const cur = tabs.findIndex(b => b.getAttribute('aria-selected') === 'true');
-      show(tabs[(cur + 1) % tabs.length]);
+      show(tabs[(cur + 1) % tabs.length], 1);
     };
     const sync = () => {
       const run = visible && !paused && !stopped && !document.hidden;
@@ -1525,7 +1538,7 @@
       b.addEventListener('keydown', e => {
         if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
         const n = tabs[(i + (e.key === 'ArrowRight' ? 1 : tabs.length - 1)) % tabs.length];
-        stopAuto(); show(n); n.focus();
+        stopAuto(); show(n, e.key === 'ArrowRight' ? 1 : -1); n.focus();
       });
     });
   });
