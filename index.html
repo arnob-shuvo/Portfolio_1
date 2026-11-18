@@ -304,6 +304,11 @@
     @keyframes dropA { 0%,24%{transform:translate(0,0);opacity:1} 36%{transform:translate(-62px,10px);opacity:1} 46%{transform:translate(-70px,130px);opacity:1} 50%,100%{transform:translate(-70px,140px);opacity:0} }
     @keyframes dropB { 0%,52%{transform:translate(0,0);opacity:0} 56%,72%{transform:translate(0,0);opacity:1} 84%{transform:translate(62px,10px);opacity:1} 94%{transform:translate(70px,130px);opacity:1} 98%,100%{transform:translate(70px,140px);opacity:0} }
     @media (prefers-reduced-motion: reduce) { .binviz .tray, .binviz .itemA, .binviz .itemB { animation: none; } .binviz .itemB { opacity: 0; } }
+    .dtable { width: 100%; border-collapse: separate; border-spacing: 4px; font-family: var(--mono); font-size: 0.74rem; table-layout: fixed; }
+    .dtable th { font-weight: 500; color: var(--dim); text-align: center; padding: 0.3rem 0; font-size: 0.68rem; }
+    .dtable tbody th { text-align: left; color: #C7CCE0; font-size: 0.7rem; width: 26%; overflow-wrap: anywhere; }
+    .dtable td { text-align: center; padding: 0.7rem 0; border-radius: 6px; color: #fff; background: rgba(var(--a1), calc(var(--v-n, 0.3))); background: color-mix(in srgb, rgb(var(--a1)) var(--v), #0A0F1E); }
+    @media (max-width: 520px) { .dtable { font-size: 0.66rem; border-spacing: 3px; } .dtable th { font-size: 0.6rem; } }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: opacity .25s ease; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; }
@@ -848,9 +853,15 @@
       </div>
 
       <article class="project reveal">
-        <div class="window spot" aria-hidden="true">
+        <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>distortions.png</span></div>
-<div class="digits">
+          <div class="tabbar" role="tablist" aria-label="Bengali digit study views">
+            <button type="button" role="tab" id="bd-t1" aria-selected="true" aria-controls="bd-blur">Blur</button>
+            <button type="button" role="tab" id="bd-t2" aria-selected="false" aria-controls="bd-all" tabindex="-1">All distortions</button>
+            <button type="button" role="tab" id="bd-t3" aria-selected="false" aria-controls="bd-aug" tabindex="-1">Augmentation</button>
+          </div>
+          <div class="tabstack">
+<div class="digits tabpanel" id="bd-blur" role="tabpanel" aria-labelledby="bd-t1">
             <div class="digit-row">
               <figure><img src="images/bengali-digit/clean.png" alt="" width="96" height="96" loading="lazy"><figcaption>clean</figcaption></figure>
               <figure><img src="images/bengali-digit/noise.png" alt="" width="96" height="96" loading="lazy"><figcaption>noise</figcaption></figure>
@@ -864,6 +875,30 @@
               <li><span>Custom CNN</span><b style="--c:76%;--d:13%"></b><em>76 → 13%</em></li>
               <li><span>MobileNetV2</span><b style="--c:85%;--d:57%"></b><em>85 → 57%</em></li>
             </ul>
+          </div>
+          <div class="shot tabpanel" id="bd-all" role="tabpanel" aria-labelledby="bd-t2" data-off inert>
+            <p class="acc-title" style="margin-top:0">Test accuracy under each distortion</p>
+            <table class="dtable">
+              <thead><tr><th></th><th>Clean</th><th>Noise</th><th>Blur</th><th>Rotate</th><th>Contrast</th></tr></thead>
+              <tbody>
+                <tr><th>HOG+SVM</th><td style="--v:59%">59%</td><td style="--v:15%">15%</td><td style="--v:44%">44%</td><td style="--v:50%">50%</td><td style="--v:59%">59%</td></tr>
+                <tr><th>Custom CNN</th><td style="--v:76%">76%</td><td style="--v:50%">50%</td><td style="--v:13%">13%</td><td style="--v:57%">57%</td><td style="--v:30%">30%</td></tr>
+                <tr><th>MobileNetV2</th><td style="--v:85%">85%</td><td style="--v:54%">54%</td><td style="--v:57%">57%</td><td style="--v:78%">78%</td><td style="--v:76%">76%</td></tr>
+              </tbody>
+            </table>
+            <p class="roles-note"><span>★</span> From the report. Noise hurts HOG+SVM most, blur and contrast hurt the CNN most, and MobileNetV2 holds up best.</p>
+          </div>
+          <div class="shot tabpanel" id="bd-aug" role="tabpanel" aria-labelledby="bd-t3" data-off inert>
+            <p class="acc-title" style="margin-top:0">Custom CNN: trained without vs with augmentation</p>
+            <table class="dtable">
+              <thead><tr><th></th><th>Clean</th><th>Noise</th><th>Blur</th><th>Rotate</th><th>Contrast</th></tr></thead>
+              <tbody>
+                <tr><th>Without</th><td style="--v:76%">76%</td><td style="--v:50%">50%</td><td style="--v:13%">13%</td><td style="--v:57%">57%</td><td style="--v:30%">30%</td></tr>
+                <tr><th>With</th><td style="--v:72%">72%</td><td style="--v:59%">59%</td><td style="--v:61%">61%</td><td style="--v:56%">56%</td><td style="--v:70%">70%</td></tr>
+              </tbody>
+            </table>
+            <p class="roles-note"><span>★</span> Augmentation costs about 4 points on clean images, but blur accuracy goes from 13% to 61%. This was my part of the project.</p>
+          </div>
           </div>
         </div>
         <div>
