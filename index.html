@@ -309,6 +309,11 @@
     .dtable tbody th { text-align: left; color: #C7CCE0; font-size: 0.7rem; width: 26%; overflow-wrap: anywhere; }
     .dtable td { text-align: center; padding: 0.7rem 0; border-radius: 6px; color: #fff; background: rgba(var(--a1), calc(var(--v-n, 0.3))); background: color-mix(in srgb, rgb(var(--a1)) var(--v), #0A0F1E); }
     @media (max-width: 520px) { .dtable { font-size: 0.66rem; border-spacing: 3px; } .dtable th { font-size: 0.6rem; } }
+    .atable { width: 100%; border-collapse: collapse; font-family: var(--mono); font-size: 0.74rem; }
+    .atable th { text-align: left; font-weight: 500; font-size: 0.68rem; color: var(--dim); padding: 0.3rem 0.4rem; border-bottom: 1px solid var(--line); }
+    .atable td { padding: 0.36rem 0.4rem; border-bottom: 1px solid rgba(255,255,255,0.05); color: #C7CCE0; }
+    .atable td:nth-child(2) { color: #7C83FF; } .atable td:last-child { color: var(--dim); } 
+    @media (max-width: 520px) { .atable { font-size: 0.66rem; } .atable th, .atable td { padding: 0.3rem 0.25rem; } }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: opacity .25s ease; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; }
@@ -969,9 +974,14 @@
       </article>
 
       <article class="project reveal">
-        <div class="window spot" aria-hidden="true">
+        <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>bridgenet_campus.pkt</span></div>
-          <div class="topo">
+          <div class="tabbar" role="tablist" aria-label="BridgeNet views">
+            <button type="button" role="tab" id="bn-t1" aria-selected="true" aria-controls="bn-topo">Topology</button>
+            <button type="button" role="tab" id="bn-t2" aria-selected="false" aria-controls="bn-addr" tabindex="-1">DNS</button>
+          </div>
+          <div class="tabstack">
+          <div class="topo tabpanel" id="bn-topo" role="tabpanel" aria-labelledby="bn-t1">
             <svg viewBox="16 22 366 236" role="img" aria-label="Network topology">
               <defs>
                 <symbol id="pc" viewBox="0 0 10 10"><rect x="0.6" y="0.6" width="8.8" height="6.2" rx="1"/><path d="M3 9.4h4M5 6.8v2.6"/></symbol>
@@ -996,6 +1006,21 @@
             </svg>
             <div class="topo-key"><span><svg viewBox="0 0 10 10"><use href="#pc"/></svg>PC</span><span><svg viewBox="0 0 10 10"><use href="#pr"/></svg>printer</span><span class="k-srv"><svg viewBox="0 0 10 10"><use href="#sv"/></svg>server</span></div>
             <div class="topo-meta"><span>base <b>10.12.0.0/16</b></span><span>subnets <b>11</b></span><span class="srv-k">servers <b>7</b></span><span>PCs <b>12</b></span><span>printers <b>6</b></span></div>
+          </div>
+          <div class="shot tabpanel" id="bn-addr" role="tabpanel" aria-labelledby="bn-t2" data-off inert>
+            <p class="acc-title" style="margin-top:0">Central DNS server: its five records</p>
+            <table class="atable">
+              <thead><tr><th>Name</th><th>A record</th><th>Used for</th></tr></thead>
+              <tbody>
+                <tr><td>dns.nbu.edu</td><td>10.12.0.2</td><td>name server</td></tr>
+                <tr><td>www.eee.nbu.edu</td><td>10.12.2.2</td><td>EEE website</td></tr>
+                <tr><td>www.research.nbu.edu</td><td>10.12.4.130</td><td>Research website</td></tr>
+                <tr><td>cse.nbu.edu</td><td>10.12.0.3</td><td>CSE mail</td></tr>
+                <tr><td>bba.nbu.edu</td><td>10.12.3.2</td><td>BBA mail</td></tr>
+              </tbody>
+            </table>
+            <p class="roles-note"><span>★</span> Also set up: DHCP servers in LAW and Research, 6 printers with static IPs, DHCP on 12 PCs, and mail clients on 4 workstations.</p>
+          </div>
           </div>
         </div>
         <div>
