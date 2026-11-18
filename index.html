@@ -315,6 +315,14 @@
     .atable td:nth-child(2) { color: #7C83FF; } .atable td:last-child { color: var(--dim); } 
     @media (max-width: 520px) { .atable { font-size: 0.66rem; } .atable th, .atable td { padding: 0.3rem 0.25rem; } }
     .tabstack { display: grid; grid-template-columns: minmax(0, 1fr); }
+    .pipe { list-style: none; margin: 1.2rem 0 1.1rem; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1.1rem; }
+    .pipe li { position: relative; padding: 0.8rem 0.9rem 0.9rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.03); }
+    .pipe li:not(:last-child)::after { content: "→"; position: absolute; right: -0.85rem; top: 50%; transform: translateY(-50%); color: rgb(var(--a1)); font-size: 0.95rem; line-height: 1; }
+    .pipe .pn { display: inline-grid; place-items: center; width: 1.35rem; height: 1.35rem; border-radius: 50%; background: rgba(var(--a1), 0.2); color: rgb(var(--a1)); font-family: var(--mono); font-size: 0.72rem; margin-bottom: 0.4rem; }
+    .pipe h4 { font-size: 0.9rem; margin: 0 0 0.3rem; }
+    .pipe p { font-size: 0.8rem; line-height: 1.5; margin: 0; color: var(--dim); }
+    .pipe b { color: var(--text, #E6E9F5); font-weight: 600; }
+    @media (max-width: 720px) { .pipe { grid-template-columns: 1fr; gap: 1.2rem; } .pipe li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1rem; transform: translateX(-50%); } }
     .tabstack { overflow: hidden; }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s .55s; }
@@ -836,6 +844,11 @@
           <p class="paper-venue">2025 IEEE 7th International Conference on Sustainable Technologies for Industry 5.0 (STI), Dhaka, Bangladesh</p>
           <p class="paper-sup">Undergraduate thesis · Supervised by <a href="https://cse.bracu.ac.bd/faculty_profile/69/dr_amitabha_chakrabarty" target="_blank" rel="noopener">Dr. Amitabha Chakrabarty</a>, BRAC University</p>
           <p class="paper-sum">Diabetic retinopathy is a leading cause of preventable blindness. We built a three-stage framework for automated screening: Progressive Growing GANs generate synthetic eye images to fix class imbalance, an EfficientNet-V2 and Vision Transformer ensemble classifies five severity levels, and knowledge distillation shrinks the model into a lightweight MobileNetV2 that can run in low-resource clinics.</p>
+          <ol class="pipe" aria-label="The three-stage framework">
+            <li><span class="pn">1</span><h4>Balance the data</h4><p>A class-conditional PG-GAN adds <b>6,338</b> synthetic images to the <b>3,662</b> real ones: <b>2,000</b> per class.</p></li>
+            <li><span class="pn">2</span><h4>Train the teacher</h4><p>EfficientNet-V2-S (93.6%) and ViT-B/16 (93.1%) fused into an ensemble: <b>95.8%</b> accuracy, <b>0.975</b> QWK.</p></li>
+            <li><span class="pn">3</span><h4>Distil the student</h4><p>MobileNetV2 learns from the teacher: <b>3.5M</b> parameters, <b>14 MB</b>, <b>61 ms</b> per image.</p></li>
+          </ol>
           <div class="tags"><span>Deep Learning</span><span>GANs</span><span>Vision Transformer</span><span>Knowledge Distillation</span><span>Medical Imaging</span></div>
           <div class="p-links">
             <a class="btn btn-primary" href="https://ieeexplore.ieee.org/abstract/document/11367503" target="_blank" rel="noopener">Read on IEEE Xplore</a>
@@ -847,7 +860,7 @@
           <div><dt>95.8%</dt><dd>accuracy on APTOS 2019</dd></div>
           <div><dt>0.975</dt><dd>quadratic weighted kappa</dd></div>
           <div><dt>96.8%</dt><dd>fewer parameters after distillation</dd></div>
-          <div><dt>10,000</dt><dd>synthetic training images generated</dd></div>
+          <div><dt>6,338</dt><dd>synthetic images generated to balance the classes</dd></div>
         </dl>
       </article>
     </div>
