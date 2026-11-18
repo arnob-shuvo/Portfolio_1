@@ -246,6 +246,21 @@
     .acc b::after { width: var(--d); background: var(--grad); }
     .acc em { font-style: normal; text-align: right; color: var(--muted); }
     @media (max-width: 520px) { .acc li { grid-template-columns: 5.6rem 1fr 4.8rem; font-size: 0.72rem; } .digit-row { gap: 0.4rem; } }
+    /* Bashpo roles panel */
+    .roles { padding: 1.3rem 1.4rem 1.5rem; position: relative; }
+    .role-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.7rem; }
+    .role { border: 1px solid var(--line); border-radius: 12px; padding: 0.85rem 0.85rem 0.95rem; background: rgba(255,255,255,0.03); }
+    .role h4 { margin: 0 0 0.6rem; font-family: var(--mono); font-size: 0.7rem; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--cyan); }
+    .role ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.4rem; font-size: 0.8rem; line-height: 1.35; color: #C7CCE0; }
+    .role li::before { content: '›'; color: rgb(var(--a1)); margin-right: 0.4rem; }
+    .role li.mine { color: #fff; }
+    .role li.mine::after, .split .mine::after { content: '★'; margin-left: 0.35rem; color: rgb(var(--am)); }
+    .split { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 1.1rem; font-family: var(--mono); font-size: 0.74rem; color: var(--dim); }
+    .split b { font-weight: 500; color: #C7CCE0; padding: 0.25rem 0.6rem; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,0.04); }
+    .split i { font-style: normal; color: var(--cyan); }
+    .roles-note { margin: 0.9rem 0 0; font-family: var(--mono); font-size: 0.72rem; color: var(--dim); }
+    .roles-note span { color: rgb(var(--am)); }
+    @media (max-width: 520px) { .role-grid { grid-template-columns: 1fr; } }
     /* Network topology panel */
     .topo { padding: 1rem 1.2rem 1.3rem; position: relative; }
     .topo svg { width: 100%; height: auto; display: block; }
@@ -934,31 +949,39 @@
 
       <article class="project reveal">
         <div class="window spot" aria-hidden="true">
-          <div class="window-bar"><i></i><i></i><i></i><span>app.py</span></div>
-<pre><span class="tk-k">@app</span>.<span class="tk-f">route</span>(<span class="tk-s">'/addGame'</span>, methods=[<span class="tk-s">'POST'</span>])
-<span class="tk-k">def</span> <span class="tk-f">add_game</span>():
-    name  = request.form[<span class="tk-s">'name'</span>]
-    genre = request.form[<span class="tk-s">'genre'</span>]
-    <span class="tk-c"># block duplicate entries</span>
-    <span class="tk-k">if</span> existing_game:
-        <span class="tk-k">return</span> jsonify(...), <span class="tk-n">400</span>
-    ...
-    <span class="tk-k">return</span> jsonify({<span class="tk-s">"message"</span>: <span class="tk-s">"Game added!"</span>}), <span class="tk-n">201</span> <span class="cur"></span></pre>
+          <div class="window-bar"><i></i><i></i><i></i><span>bashpo.store</span></div>
+          <div class="roles">
+            <div class="role-grid">
+              <div class="role"><h4>Buyer</h4><ul><li>Browse by genre</li><li>Wishlist and cart</li><li>Wallet checkout</li><li class="mine">Featured games</li></ul></div>
+              <div class="role"><h4>Developer</h4><ul><li>Publish request</li><li>Timed sales</li><li>Activation keys</li></ul></div>
+              <div class="role"><h4>Admin</h4><ul><li>Approve games</li><li class="mine">Revenue analytics</li><li class="mine">Top sellers</li></ul></div>
+            </div>
+            <div class="split"><b class="mine">sale revenue</b><i>→</i><b>developer wallet</b><i>+</i><b>admin wallet</b></div>
+            <p class="roles-note"><span>★</span> the parts I built</p>
+          </div>
         </div>
         <div>
-          <p class="p-label">System Analysis and Design · CSE471 project</p>
-          <h3>Bashpo Game Store</h3>
-          <p class="desc">A backend service for an online game store, built with Flask and SQLite.</p>
+          <p class="p-label">System Analysis and Design · CSE471 team project</p>
+          <h3>Bashpo Digital Game Store</h3>
+          <p class="desc">A Steam-style online game store for buyers, developers who publish and sell their games, and an admin who runs the store. Built by a team of three with Flask and SQLite, and deployed on Render.</p>
           <ul class="features" data-stagger>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Add games with title, genre, release date and cover image upload</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Rejects duplicate entries before they reach the database</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Homepage endpoint returns featured new releases and games grouped by genre</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Group of three. My part: the homepage's featured games, admin revenue monitoring and top-selling games, splitting each sale between the developer and admin wallets, and the Figma designs for the game page and upload page</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Buyers get a wishlist, cart, wallet or card checkout, product keys and refunds. Developers publish through admin approval, run timed sales and generate keys</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>My early backend module is in the repo below: a Flask API for the homepage and for adding games</li>
           </ul>
-          <div class="tags"><span>Python</span><span>Flask</span><span>SQLite</span><span>REST API</span><span>CSE471</span></div>
+          <div class="tags"><span>Python</span><span>Flask</span><span>SQLite</span><span>TailwindCSS</span><span>Figma</span><span>CSE471</span></div>
           <div class="p-links">
+            <a class="btn btn-primary" href="https://bashpo-main.onrender.com/" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              Live site
+            </a>
+            <a class="btn btn-outline" href="https://github.com/TheLubricator/bashpo_main" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Full project code
+            </a>
             <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE471-Bashpo-Game-Store" target="_blank" rel="noopener">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
-              Source code
+              My backend module
             </a>
           </div>
         </div>
