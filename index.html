@@ -265,6 +265,7 @@
     .store { padding: 1.1rem 1.2rem 1.3rem; position: relative; }
     .store-top { display: flex; align-items: center; gap: 0.7rem; }
     .store-top .logo { font-family: var(--mono); font-size: 0.8rem; letter-spacing: 0.14em; color: #fff; }
+    .store-top .brand { flex: none; height: 52px; width: auto; border-radius: 8px; display: block; }
     .store-search { flex: 1; min-width: 0; padding: 0.4rem 0.8rem; border-radius: 999px; background: rgba(255,255,255,0.05); border: 1px solid var(--line); font-size: 0.72rem; color: var(--dim); }
     .wallet { padding: 0.36rem 0.7rem; border-radius: 999px; background: rgba(var(--a2),0.14); color: var(--cyan); font-family: var(--mono); font-size: 0.72rem; white-space: nowrap; }
     .store-chips { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: 1rem 0 0.9rem; }
@@ -992,7 +993,7 @@
           </div>
           <div class="tabstack">
             <div class="store tabpanel" id="bp-store" role="tabpanel" aria-labelledby="bp-t1">
-            <div class="store-top"><b class="logo">BASHPO</b><span class="store-search">Search games</span><span class="wallet">$ 24.50</span></div>
+            <div class="store-top"><img class="brand" src="images/bashpo/logo.webp" alt="Bashpo gaming store logo" width="560" height="461"><span class="store-search">Search games</span><span class="wallet">$ 24.50</span></div>
             <div class="store-chips"><span class="on">All</span><span>Action</span><span>RPG</span><span>Racing</span><span>Puzzle</span></div>
             <p class="store-label">Featured: 3 newest <em>★</em></p>
             <div class="store-grid">
