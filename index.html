@@ -781,7 +781,7 @@
       <div class="sec-head reveal">
         <p class="kicker">Selected work</p>
         <h2>Projects</h2>
-        <p>Things I've built while learning. Each one has its full source code on GitHub.</p>
+        <p>Things I've built while learning, each with its code or report on GitHub.</p>
       </div>
 
       <article class="project reveal">
@@ -813,10 +813,49 @@
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Distortion-based augmentation lifted CNN accuracy under blur from 13% to 61%</li>
           </ul>
           <div class="tags"><span>Python</span><span>TensorFlow</span><span>scikit-learn</span><span>Computer Vision</span><span>CSE437</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE437-Bengali-Digit-Robustness" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Source code
+            </a>
+          </div>
         </div>
       </article>
 
       <article class="project flip reveal">
+        <div class="window spot" aria-hidden="true">
+          <div class="window-bar"><i></i><i></i><i></i><span>model_comparison.ipynb</span></div>
+          <div class="digits">
+            <p class="acc-title" style="margin-top:0">Accuracy: cross-validation → test</p>
+            <ul class="acc">
+              <li><span>KNN</span><b style="--c:64%;--d:63%"></b><em>64 → 63%</em></li>
+              <li><span>Dec. Tree</span><b style="--c:64%;--d:65%"></b><em>64 → 65%</em></li>
+              <li><span>Logistic</span><b style="--c:64%;--d:64%"></b><em>64 → 64%</em></li>
+              <li><span>Naive Bayes</span><b style="--c:65%;--d:65%"></b><em>65 → 65%</em></li>
+              <li><span>Neural Net</span><b style="--c:64%;--d:67%"></b><em>64 → 67%</em></li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <p class="p-label">Machine Learning · CSE422 lab project</p>
+          <h3>E-commerce Delivery Prediction</h3>
+          <p class="desc">A binary classification study in the logistics domain: predicting whether an e-commerce order arrives on time or late, from exploratory analysis through to model evaluation.</p>
+          <ul class="features" data-stagger>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Group of two. Uses 10 shipment and customer features from about 11,000 orders</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Compared KNN, Decision Tree, Logistic Regression, Naive Bayes and a neural network, with 5-fold cross-validation</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The neural network scored best at 67% test accuracy, but every model landed within a few points because the features carry only a weak signal</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>scikit-learn</span><span>Neural Network</span><span>EDA</span><span>CSE422</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE422-Ecommerce-Delivery-Prediction" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Source code
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
         <div class="window spot" aria-hidden="true">
           <div class="window-bar"><i></i><i></i><i></i><span>bridgenet_campus.pkt</span></div>
           <div class="topo">
@@ -856,6 +895,40 @@
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Floating static routes switch traffic to a backup link automatically when a main link goes down</li>
           </ul>
           <div class="tags"><span>Cisco Packet Tracer</span><span>VLSM</span><span>RIPv2</span><span>DNS</span><span>DHCP</span><span>CSE421</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE421-BridgeNet-Campus" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Source code
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project flip reveal">
+        <div class="window spot" aria-hidden="true">
+          <div class="window-bar"><i></i><i></i><i></i><span>smart_bin.flow</span></div>
+<pre><span class="tk-f">ESP32-CAM</span> ─<span class="tk-c">UART</span>─▶ <span class="tk-f">Arduino Uno</span>
+<span class="tk-c">Edge Impulse</span>       │
+                  ├─ <span class="tk-k">servo</span> → basket
+                  ├─ <span class="tk-k">MQ-2/135</span> → buzzer
+                  └─ <span class="tk-k">I2C LCD</span> → status <span class="cur"></span></pre>
+        </div>
+        <div>
+          <p class="p-label">Embedded AI · CSE360 lab project</p>
+          <h3>Smart Waste Segregator</h3>
+          <p class="desc">A low-cost smart bin that uses an on-device vision model to sort waste into biodegradable and non-biodegradable compartments, and monitors smoke and air quality inside the bin.</p>
+          <ul class="features" data-stagger>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Group of four. My part: wiring and testing the gas sensors, and setting up the camera tripod</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>An ESP32-CAM runs an Edge Impulse detection model and sends results to an Arduino Uno over UART, which drives a servo to drop the item on the right side</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Built for about 3,795 BDT. Limited by a low-resolution camera and a model that knows only two item types</li>
+          </ul>
+          <div class="tags"><span>Arduino</span><span>ESP32-CAM</span><span>Edge Impulse</span><span>Embedded</span><span>CSE360</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE360-Smart-Waste-Segregator" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Project report
+            </a>
+          </div>
         </div>
       </article>
 
@@ -882,6 +955,12 @@
             <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Homepage endpoint returns featured new releases and games grouped by genre</li>
           </ul>
           <div class="tags"><span>Python</span><span>Flask</span><span>SQLite</span><span>REST API</span><span>CSE471</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE471-Bashpo-Game-Store" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Source code
+            </a>
+          </div>
         </div>
       </article>
 
