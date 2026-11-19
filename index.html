@@ -720,6 +720,27 @@
     .paper-venue { color: var(--dim); font-size: .92rem; font-style: italic; margin-top: .35rem; }
     .paper-sum { color: var(--muted); margin: 1.1rem 0 1.2rem; }
     .paper .p-links .btn-outline { font-size: .85rem; }
+    .paper-side { display: flex; flex-direction: column; gap: 1.4rem; align-content: center; justify-content: center; }
+    .paper-eye { margin: 0; display: grid; justify-items: center; gap: .6rem; }
+    .paper-eye svg { width: min(100%, 250px); height: auto; filter: drop-shadow(0 10px 28px rgba(0,0,0,.45)); }
+    .paper-eye figcaption { font-size: .78rem; color: var(--dim); text-align: center; max-width: 30ch; }
+    .grades { list-style: none; margin: .2rem 0 0; padding: 0; display: grid; grid-template-columns: repeat(5, 1fr); gap: .3rem; width: min(100%, 250px); }
+    .grades li { display: grid; justify-items: center; gap: .12rem; padding: .4rem .1rem .45rem; border-radius: 9px; border: 1px solid var(--line); background: var(--bg-2); border-top: 3px solid var(--c); opacity: .55; }
+    .grades li b { font-size: .95rem; line-height: 1; color: var(--text); }
+    .grades li span { font-size: .6rem; line-height: 1.15; color: var(--muted); text-align: center; }
+    .grades li.on { opacity: 1; background: color-mix(in srgb, var(--c) 16%, var(--bg-2)); border-color: var(--c); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 35%, transparent); }
+    .grades li.on span { color: var(--text); font-weight: 600; }
+    .lg { opacity: 0; transition: opacity .9s ease; }
+    .paper-eye[data-g="1"] .lg1, .paper-eye[data-g="2"] .lg1, .paper-eye[data-g="3"] .lg1, .paper-eye[data-g="4"] .lg1,
+    .paper-eye[data-g="2"] .lg2, .paper-eye[data-g="3"] .lg2, .paper-eye[data-g="4"] .lg2,
+    .paper-eye[data-g="3"] .lg3, .paper-eye[data-g="4"] .lg3,
+    .paper-eye[data-g="4"] .lg4 { opacity: 1; }
+    .grades li { transition: opacity .4s, background .4s, box-shadow .4s, border-color .4s; }
+    .paper-eye[data-g="0"] .grades li:nth-child(1), .paper-eye[data-g="1"] .grades li:nth-child(2), .paper-eye[data-g="2"] .grades li:nth-child(3), .paper-eye[data-g="3"] .grades li:nth-child(4), .paper-eye[data-g="4"] .grades li:nth-child(5) { opacity: 1; background: color-mix(in srgb, var(--c) 16%, var(--bg-2)); border-color: var(--c); box-shadow: 0 0 14px color-mix(in srgb, var(--c) 35%, transparent); }
+    .paper-eye[data-g="0"] .grades li:nth-child(1) span, .paper-eye[data-g="1"] .grades li:nth-child(2) span, .paper-eye[data-g="2"] .grades li:nth-child(3) span, .paper-eye[data-g="3"] .grades li:nth-child(4) span, .paper-eye[data-g="4"] .grades li:nth-child(5) span { color: var(--text); font-weight: 600; }
+    .paper-eye .scan { animation: eyeScan 4.5s ease-in-out infinite; }
+    @keyframes eyeScan { 0%, 100% { transform: translateY(-86px); opacity: 0; } 15%, 85% { opacity: 1; } 50% { transform: translateY(86px); } }
+    @media (prefers-reduced-motion: reduce) { .paper-eye .scan { animation: none; opacity: 0; } }
     .paper-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; align-content: center; }
     .paper-stats div { background: var(--bg-2); border: 1px solid var(--line); border-radius: 16px; padding: 1.2rem 1.1rem; }
     .paper-stats dt { font-size: clamp(1.6rem, 3vw, 2.1rem); font-weight: 800; letter-spacing: -0.02em; color: var(--violet-hi); line-height: 1.1; }
@@ -904,13 +925,64 @@
             <a class="btn btn-outline" href="https://scholar.google.com/citations?user=caKM-Q4AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
           </div>
         </div>
+        <div class="paper-side">
+        <figure class="paper-eye" data-g="2" role="img" aria-label="Illustration of a retina with signs of diabetic retinopathy">
+          <svg viewBox="0 0 240 240" aria-hidden="true">
+            <defs>
+              <radialGradient id="fd-bg" cx="42%" cy="50%" r="62%"><stop offset="0" stop-color="#f7b267"/><stop offset=".55" stop-color="#e07a3f"/><stop offset=".9" stop-color="#a8381d"/><stop offset="1" stop-color="#5e140c"/></radialGradient>
+              <radialGradient id="fd-disc" cx="45%" cy="45%" r="60%"><stop offset="0" stop-color="#fffbe0"/><stop offset=".7" stop-color="#f8d98a"/><stop offset="1" stop-color="#e7a64b"/></radialGradient>
+              <radialGradient id="fd-mac" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#8e2a12" stop-opacity=".85"/><stop offset="1" stop-color="#8e2a12" stop-opacity="0"/></radialGradient>
+              <radialGradient id="fd-vig" cx="50%" cy="50%" r="50%"><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".55"/></radialGradient>
+              <linearGradient id="fd-scan" x1="0" x2="1"><stop offset="0" stop-color="#7dd3fc" stop-opacity="0"/><stop offset=".5" stop-color="#7dd3fc" stop-opacity=".55"/><stop offset="1" stop-color="#7dd3fc" stop-opacity="0"/></linearGradient>
+              <clipPath id="fd-clip"><circle cx="120" cy="120" r="108"/></clipPath>
+            </defs>
+            <circle cx="120" cy="120" r="114" fill="none" stroke="rgba(255,255,255,.18)" stroke-width="1.5"/>
+            <g clip-path="url(#fd-clip)">
+              <rect width="240" height="240" fill="url(#fd-bg)"/>
+              <circle cx="92" cy="122" r="26" fill="url(#fd-mac)"/>
+              <g fill="none" stroke="#7d160d" stroke-linecap="round">
+                <path d="M168 106C150 70 112 50 66 60" stroke-width="4.6"/>
+                <path d="M140 76C132 58 114 46 90 42" stroke-width="3"/>
+                <path d="M112 62C104 74 96 80 84 84" stroke-width="2"/>
+                <path d="M168 118C150 160 112 184 70 172" stroke-width="4.6"/>
+                <path d="M140 158C130 178 110 190 86 194" stroke-width="3"/>
+                <path d="M110 176C102 164 96 160 84 156" stroke-width="2"/>
+                <path d="M160 112C140 106 120 112 104 120" stroke-width="2.4"/>
+                <path d="M182 106C198 98 208 94 218 90" stroke-width="3"/>
+                <path d="M182 120C198 128 208 134 218 140" stroke-width="3"/>
+                <path d="M66 60C52 64 42 72 34 84" stroke-width="2.4"/>
+                <path d="M70 172C56 168 44 160 36 148" stroke-width="2.4"/>
+              </g>
+              <ellipse cx="170" cy="112" rx="15" ry="18" fill="url(#fd-disc)"/>
+              <ellipse cx="168" cy="112" rx="6" ry="8" fill="#fff6cf" opacity=".9"/>
+              <g class="lg lg1" fill="#6d0f08"><circle cx="118" cy="88" r="2.6"/><circle cx="126" cy="150" r="2.4"/><circle cx="82" cy="104" r="2"/><circle cx="106" cy="140" r="2.2"/><circle cx="74" cy="138" r="1.8"/><circle cx="132" cy="98" r="1.8"/><circle cx="98" cy="96" r="1.6"/></g>
+              <g class="lg lg2" fill="#5a0a06"><ellipse cx="116" cy="128" rx="6" ry="4"/><ellipse cx="84" cy="150" rx="5" ry="3.4"/><ellipse cx="140" cy="140" rx="4.6" ry="3.2"/></g>
+              <g class="lg lg2" fill="#fff0a8"><circle cx="76" cy="116" r="2.4"/><circle cx="82" cy="123" r="2"/><circle cx="73" cy="126" r="1.8"/><circle cx="88" cy="114" r="1.6"/><circle cx="96" cy="130" r="2.2"/><circle cx="104" cy="104" r="1.8"/></g>
+              <g class="lg lg3"><ellipse cx="128" cy="70" rx="8" ry="5" fill="#fff7e6" opacity=".7" transform="rotate(-20 128 70)"/><ellipse cx="62" cy="150" rx="6" ry="3.6" fill="#fff7e6" opacity=".6" transform="rotate(25 62 150)"/><g fill="#5a0a06"><ellipse cx="100" cy="112" rx="5" ry="3.4"/><ellipse cx="130" cy="124" rx="5.4" ry="3.4"/><ellipse cx="72" cy="96" rx="4.4" ry="3"/><ellipse cx="108" cy="158" rx="5" ry="3.2"/></g></g>
+              <g class="lg lg4" fill="none" stroke="#b8211a" stroke-linecap="round" stroke-width="1.6"><path d="M150 96c-6-8-4-18 4-22m-4 22c-8-2-12-8-12-16"/><path d="M150 132c-6 8-4 16 4 20m-4-20c-8 2-12 8-12 14"/><path d="M118 72c4-6 10-8 16-6m-16 6c-2 6 0 12 6 14"/></g>
+              <g class="lg lg4" fill="#7a0d08"><ellipse cx="92" cy="90" rx="7" ry="4.6"/><ellipse cx="94" cy="140" rx="7" ry="4.4"/><ellipse cx="124" cy="132" rx="6" ry="4"/></g>
+              <circle cx="120" cy="120" r="108" fill="url(#fd-vig)"/>
+            </g>
+            <g class="scan"><rect x="12" y="116" width="216" height="8" fill="url(#fd-scan)"/></g>
+            <g fill="none" stroke="rgb(125,211,252)" stroke-width="2" stroke-linecap="round"><path d="M14 40V20q0-6 6-6h20"/><path d="M226 40V20q0-6-6-6h-20"/><path d="M14 200v20q0 6 6 6h20"/><path d="M226 200v20q0 6-6 6h-20"/></g>
+          </svg>
+          <ol class="grades" aria-label="The five severity classes the model predicts">
+            <li style="--c:#22c55e"><b>0</b><span>No DR</span></li>
+            <li style="--c:#a3e635"><b>1</b><span>Mild</span></li>
+            <li style="--c:#facc15"><b>2</b><span>Moderate</span></li>
+            <li style="--c:#fb923c"><b>3</b><span>Severe</span></li>
+            <li style="--c:#ef4444"><b>4</b><span>Prolif.</span></li>
+          </ol>
+          <figcaption>Illustration: a retina with signs of diabetic retinopathy, and the five severity grades the model classifies (the example cycles through grades 0 to 4)</figcaption>
+        </figure>
         <dl class="paper-stats">
           <div><dt>95.8%</dt><dd>accuracy on APTOS 2019</dd></div>
           <div><dt>0.975</dt><dd>quadratic weighted kappa</dd></div>
           <div><dt>96.8%</dt><dd>fewer parameters after distillation</dd></div>
           <div><dt>6,338</dt><dd>synthetic images generated to balance the classes</dd></div>
         </dl>
-      </article>
+        </div>
+            </article>
     </div>
   </section>
 
@@ -1753,13 +1825,13 @@
   var prev = root.querySelector('.pc-prev'), next = root.querySelector('.pc-next');
   var dots = root.querySelector('.pc-dots'), count = root.querySelector('.pc-count'), cur = 0, raf = 0;
   var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function go(i) { i = Math.max(0, Math.min(n - 1, i)); track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); }
+  function go(i) { if (isNaN(i)) i = 0; i = Math.max(0, Math.min(n - 1, i)); track.scrollTo({ left: slides[i].offsetLeft - track.offsetLeft, behavior: reduce ? 'auto' : 'smooth' }); }
   for (var k = 0; k < n; k++) (function (k) {
     var b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', 'Poster ' + (k + 1) + ' of ' + n);
     b.addEventListener('click', function () { go(k); }); dots.appendChild(b);
   })(k);
   function sync() {
-    cur = Math.round(track.scrollLeft / track.clientWidth);
+    cur = track.clientWidth ? Math.round(track.scrollLeft / track.clientWidth) : 0;
     cur = Math.max(0, Math.min(n - 1, cur));
     prev.disabled = cur === 0; next.disabled = cur === n - 1;
     [].forEach.call(dots.children, function (d, i) { d.setAttribute('aria-current', i === cur ? 'true' : 'false'); });
@@ -1793,6 +1865,23 @@
     } else { visible = true; }
     start();
   }
+})();
+</script>
+<script>
+(function(){
+  var fig=document.querySelector('.paper-eye'); if(!fig) return;
+  var chips=fig.querySelectorAll('.grades li'), g=0, timer=null, visible=false, hover=false;
+  function set(n){ g=n; fig.setAttribute('data-g',n); chips.forEach(function(c,i){ if(i===n) c.setAttribute('aria-current','true'); else c.removeAttribute('aria-current'); }); }
+  var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(still){ set(2); return; }
+  function tick(){ set((g+1)%5); }
+  function sync(){ var on=visible&&!hover&&!document.hidden; if(on&&!timer) timer=setInterval(tick,2400); else if(!on&&timer){ clearInterval(timer); timer=null; } }
+  set(0);
+  fig.addEventListener('mouseenter',function(){hover=true;sync();});
+  fig.addEventListener('mouseleave',function(){hover=false;sync();});
+  document.addEventListener('visibilitychange',sync);
+  chips.forEach(function(c,i){ c.addEventListener('click',function(){ set(i); }); });
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(e){ visible=e[0].isIntersecting; sync(); },{threshold:.3}).observe(fig); } else { visible=true; sync(); }
 })();
 </script>
 </body>
