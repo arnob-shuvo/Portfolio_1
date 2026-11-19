@@ -323,6 +323,17 @@
     .pipe p { font-size: 0.8rem; line-height: 1.5; margin: 0; color: var(--dim); }
     .pipe b { color: var(--text, #E6E9F5); font-weight: 600; }
     @media (max-width: 720px) { .pipe { grid-template-columns: 1fr; gap: 1.2rem; } .pipe li:not(:last-child)::after { content: "↓"; right: auto; left: 50%; top: auto; bottom: -1rem; transform: translateX(-50%); } }
+    .courses { margin-top: 3rem; }
+    .courses h3 { font-size: 1.25rem; margin: 0 0 .3rem; }
+    .courses-sub { color: var(--dim); margin: 0 0 1.1rem; }
+    .course-list { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: .7rem; }
+    .course-list li { display: flex; align-items: center; justify-content: space-between; gap: .8rem; padding: .8rem 1rem; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,0.03); }
+    .course-list strong { display: block; font-size: .95rem; font-weight: 600; }
+    .course-list span { color: var(--dim); font-size: .82rem; }
+    .course-list a, .cc-none { flex: none; font-size: .8rem; font-weight: 500; padding: .3rem .7rem; border-radius: 999px; color: var(--hl1); background: rgba(var(--a1),.12); text-decoration: none; white-space: nowrap; }
+    .course-list a:hover { text-decoration: underline; }
+    .cc-none { color: var(--dim) !important; background: transparent !important; padding-right: 0; }
+    @media (max-width: 720px) { .course-list { grid-template-columns: 1fr; } }
     .tabstack { overflow: hidden; }
     .tabstack > .tabpanel { grid-area: 1 / 1; min-width: 0; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s; }
     .tabstack > .tabpanel[data-off] { opacity: 0; visibility: hidden; transition: transform .55s cubic-bezier(.65,0,.25,1), opacity .55s ease, visibility 0s .55s; }
@@ -1351,6 +1362,19 @@
           <ul class="edu-tags"><li>Ranked 1st in class, grades 1–5</li></ul>
         </li>
       </ol>
+      <div class="courses reveal">
+        <h3>Courses &amp; certificates</h3>
+        <p class="courses-sub">Short hands-on courses I finished on DataCamp, alongside my university work.</p>
+        <ul class="course-list">
+          <li><div><strong>Introduction to PySpark</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/dbec40e7372b1ea843dcd08172880eb588c4607f" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Time Series Analysis in Python</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/edfe290a31794577debaf5514cf9511fe63b6bdf" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Feature Engineering for Machine Learning in Python</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/b0f89fecff1de20a91aad9022b39b2b5f226a14d" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Supervised Learning with scikit-learn</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/dd4d7723fcf42a5a8264ffdf7a47d73ab4150adc" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Exploratory Data Analysis in Python</strong><span>DataCamp · July 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/f7553f901d3260f99b1dbaef1a489960e3c2d7bc" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Introduction to Statistics in Python</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/8d3852faf65058df5ad621c656a12b46b0fce14f" target="_blank" rel="noopener">Certificate</a></li>
+          <li><div><strong>Introduction to Data Science in Python</strong><span>DataCamp · 2026</span></div><a href="https://www.datacamp.com/completed/statement-of-accomplishment/course/98beb96f61431c7a6da9d0a88eaf03f8fbaf11d6" target="_blank" rel="noopener">Certificate</a></li>
+        </ul>
+      </div>
     </div>
   </section>
 
