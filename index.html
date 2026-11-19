@@ -1769,6 +1769,24 @@
   });
   window.addEventListener('resize', function () { go(cur); sync(); });
   sync();
+
+  // Auto-advance every 4.5 s; pauses on hover, focus, touch, hidden tab or when off-screen.
+  if (!reduce && n > 1) {
+    var timer = 0, hold = false, visible = false;
+    function tick() { if (!hold && visible && !document.hidden) go(cur === n - 1 ? 0 : cur + 1); }
+    function start() { stop(); timer = setInterval(tick, 4500); }
+    function stop() { clearInterval(timer); }
+    function pause() { hold = true; }
+    function resume() { hold = false; start(); }
+    root.addEventListener('mouseenter', pause); root.addEventListener('mouseleave', resume);
+    root.addEventListener('focusin', function (e) { if (e.target.matches && e.target.matches(':focus-visible')) pause(); }); root.addEventListener('focusout', resume);
+    root.addEventListener('touchstart', pause, { passive: true });
+    root.addEventListener('touchend', function () { setTimeout(resume, 2500); }, { passive: true });
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) { visible = en[0].isIntersecting; }, { threshold: 0.4 }).observe(root);
+    } else { visible = true; }
+    start();
+  }
 })();
 </script>
 </body>
