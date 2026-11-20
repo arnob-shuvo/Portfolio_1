@@ -1065,54 +1065,6 @@
 
       <article class="project flip reveal">
         <div class="window spot">
-          <div class="window-bar"><i></i><i></i><i></i><span>model_comparison.ipynb</span></div>
-          <div class="tabbar" role="tablist" aria-label="Delivery prediction views">
-            <button type="button" role="tab" id="dl-t1" aria-selected="true" aria-controls="dl-acc">Accuracy</button>
-            <button type="button" role="tab" id="dl-t2" aria-selected="false" aria-controls="dl-roc" tabindex="-1">ROC</button>
-            <button type="button" role="tab" id="dl-t3" aria-selected="false" aria-controls="dl-pr" tabindex="-1">Precision &amp; recall</button>
-          </div>
-          <div class="tabstack">
-          <div class="digits tabpanel" id="dl-acc" role="tabpanel" aria-labelledby="dl-t1">
-            <p class="acc-title" style="margin-top:0">Accuracy: cross-validation → test</p>
-            <ul class="acc">
-              <li><span>KNN</span><b style="--c:64%;--d:63%"></b><em>64 → 63%</em></li>
-              <li><span>Dec. Tree</span><b style="--c:64%;--d:65%"></b><em>64 → 65%</em></li>
-              <li><span>Logistic</span><b style="--c:64%;--d:64%"></b><em>64 → 64%</em></li>
-              <li><span>Naive Bayes</span><b style="--c:65%;--d:65%"></b><em>65 → 65%</em></li>
-              <li><span>Neural Net</span><b style="--c:64%;--d:67%"></b><em>64 → 67%</em></li>
-            </ul>
-          </div>
-          <div class="shot tabpanel" id="dl-roc" role="tabpanel" aria-labelledby="dl-t2" data-off inert>
-            <img src="images/delivery/roc.webp" alt="ROC curves for the five models: neural network AUC 0.75, Naive Bayes 0.73, logistic regression 0.72, KNN 0.70, decision tree 0.63" width="945" height="741" loading="lazy">
-            <p class="roles-note"><span>★</span> ROC curves from our report. The neural network has the best AUC (0.75).</p>
-          </div>
-          <div class="shot tabpanel" id="dl-pr" role="tabpanel" aria-labelledby="dl-t3" data-off inert>
-            <img src="images/delivery/precision-recall.webp" alt="Precision and recall for each model. Naive Bayes has about 0.97 precision but only about 0.42 recall" width="976" height="753" loading="lazy">
-            <p class="roles-note"><span>★</span> Naive Bayes is very precise but misses many late orders (recall about 0.42).</p>
-          </div>
-          </div>
-        </div>
-        <div>
-          <p class="p-label">Artificial Intelligence · CSE422 lab project</p>
-          <h3>E-commerce Delivery Prediction</h3>
-          <p class="desc">A binary classification study in the logistics domain: predicting whether an e-commerce order arrives on time or late, from exploratory analysis through to model evaluation.</p>
-          <ul class="features" data-stagger>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Group of two. Uses 10 shipment and customer features from about 11,000 orders</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Compared KNN, Decision Tree, Logistic Regression, Naive Bayes and a neural network, with 5-fold cross-validation</li>
-            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The neural network scored best at 67% test accuracy, but every model landed within a few points because the features carry only a weak signal</li>
-          </ul>
-          <div class="tags"><span>Python</span><span>scikit-learn</span><span>Neural Network</span><span>EDA</span><span>CSE422</span></div>
-          <div class="p-links">
-            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE422-Ecommerce-Delivery-Prediction" target="_blank" rel="noopener">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
-              Source code
-            </a>
-          </div>
-        </div>
-      </article>
-
-      <article class="project reveal">
-        <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>bridgenet_campus.pkt</span></div>
           <div class="tabbar" role="tablist" aria-label="BridgeNet views">
             <button type="button" role="tab" id="bn-t1" aria-selected="true" aria-controls="bn-topo">Topology</button>
@@ -1180,7 +1132,7 @@
         </div>
       </article>
 
-      <article class="project flip reveal">
+      <article class="project reveal">
         <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>smart_bin.flow</span></div>
           <div class="tabbar" role="tablist" aria-label="Smart Waste Segregator views">
@@ -1259,7 +1211,7 @@
         </div>
       </article>
 
-      <article class="project reveal">
+      <article class="project flip reveal">
         <div class="window spot">
           <div class="window-bar"><i></i><i></i><i></i><span>bashpo.store</span></div>
           <div class="tabbar" role="tablist" aria-label="Bashpo views">
@@ -1328,6 +1280,54 @@
             <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE471-Bashpo-Game-Store" target="_blank" rel="noopener">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
               My backend module
+            </a>
+          </div>
+        </div>
+      </article>
+
+      <article class="project reveal">
+        <div class="window spot">
+          <div class="window-bar"><i></i><i></i><i></i><span>model_comparison.ipynb</span></div>
+          <div class="tabbar" role="tablist" aria-label="Delivery prediction views">
+            <button type="button" role="tab" id="dl-t1" aria-selected="true" aria-controls="dl-acc">Accuracy</button>
+            <button type="button" role="tab" id="dl-t2" aria-selected="false" aria-controls="dl-roc" tabindex="-1">ROC</button>
+            <button type="button" role="tab" id="dl-t3" aria-selected="false" aria-controls="dl-pr" tabindex="-1">Precision &amp; recall</button>
+          </div>
+          <div class="tabstack">
+          <div class="digits tabpanel" id="dl-acc" role="tabpanel" aria-labelledby="dl-t1">
+            <p class="acc-title" style="margin-top:0">Accuracy: cross-validation → test</p>
+            <ul class="acc">
+              <li><span>KNN</span><b style="--c:64%;--d:63%"></b><em>64 → 63%</em></li>
+              <li><span>Dec. Tree</span><b style="--c:64%;--d:65%"></b><em>64 → 65%</em></li>
+              <li><span>Logistic</span><b style="--c:64%;--d:64%"></b><em>64 → 64%</em></li>
+              <li><span>Naive Bayes</span><b style="--c:65%;--d:65%"></b><em>65 → 65%</em></li>
+              <li><span>Neural Net</span><b style="--c:64%;--d:67%"></b><em>64 → 67%</em></li>
+            </ul>
+          </div>
+          <div class="shot tabpanel" id="dl-roc" role="tabpanel" aria-labelledby="dl-t2" data-off inert>
+            <img src="images/delivery/roc.webp" alt="ROC curves for the five models: neural network AUC 0.75, Naive Bayes 0.73, logistic regression 0.72, KNN 0.70, decision tree 0.63" width="945" height="741" loading="lazy">
+            <p class="roles-note"><span>★</span> ROC curves from our report. The neural network has the best AUC (0.75).</p>
+          </div>
+          <div class="shot tabpanel" id="dl-pr" role="tabpanel" aria-labelledby="dl-t3" data-off inert>
+            <img src="images/delivery/precision-recall.webp" alt="Precision and recall for each model. Naive Bayes has about 0.97 precision but only about 0.42 recall" width="976" height="753" loading="lazy">
+            <p class="roles-note"><span>★</span> Naive Bayes is very precise but misses many late orders (recall about 0.42).</p>
+          </div>
+          </div>
+        </div>
+        <div>
+          <p class="p-label">Artificial Intelligence · CSE422 lab project</p>
+          <h3>E-commerce Delivery Prediction</h3>
+          <p class="desc">A binary classification study in the logistics domain: predicting whether an e-commerce order arrives on time or late, from exploratory analysis through to model evaluation.</p>
+          <ul class="features" data-stagger>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Group of two. Uses 10 shipment and customer features from about 11,000 orders</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>Compared KNN, Decision Tree, Logistic Regression, Naive Bayes and a neural network, with 5-fold cross-validation</li>
+            <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>The neural network scored best at 67% test accuracy, but every model landed within a few points because the features carry only a weak signal</li>
+          </ul>
+          <div class="tags"><span>Python</span><span>scikit-learn</span><span>Neural Network</span><span>EDA</span><span>CSE422</span></div>
+          <div class="p-links">
+            <a class="btn btn-outline" href="https://github.com/arnob-shuvo/CSE422-Ecommerce-Delivery-Prediction" target="_blank" rel="noopener">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12.02c0 4.42 2.87 8.18 6.84 9.5.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.64-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.56 9.56 0 0 1 12 6.84c.85 0 1.7.11 2.5.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10.02 10.02 0 0 0 22 12.02C22 6.48 17.52 2 12 2z"/></svg>
+              Source code
             </a>
           </div>
         </div>
